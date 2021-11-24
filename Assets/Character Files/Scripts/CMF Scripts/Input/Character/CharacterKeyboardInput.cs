@@ -10,9 +10,17 @@ namespace CMF
         public string horizontalInputAxis = "Horizontal";
         public string verticalInputAxis = "Vertical";
         public KeyCode jumpKey = KeyCode.Space;
+        public bool jump;
 
         //If this is enabled, Unity's internal input smoothing is bypassed;
         public bool useRawInput = true;
+
+        private void Awake()
+        {
+            handle = null;
+            background = null;
+        }
+
 
         public override float GetHorizontalMovementInput()
         {
@@ -28,6 +36,11 @@ namespace CMF
                 return Input.GetAxisRaw(verticalInputAxis);
             else
                 return Input.GetAxis(verticalInputAxis);
+        }
+
+        public void jumpButton()
+        {
+            jump = true;
         }
 
         public override bool IsJumpKeyPressed()

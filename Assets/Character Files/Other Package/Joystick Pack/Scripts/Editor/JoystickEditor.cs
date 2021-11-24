@@ -11,8 +11,8 @@ public class JoystickEditor : Editor
     private SerializedProperty axisOptions;
     private SerializedProperty snapX;
     private SerializedProperty snapY;
-    protected SerializedProperty background;
-    private SerializedProperty handle;
+    protected GameObject background;
+    private GameObject handle;
 
     protected Vector2 center = new Vector2(0.5f, 0.5f);
 
@@ -23,8 +23,8 @@ public class JoystickEditor : Editor
         axisOptions = serializedObject.FindProperty("axisOptions");
         snapX = serializedObject.FindProperty("snapX");
         snapY = serializedObject.FindProperty("snapY");
-        background = serializedObject.FindProperty("background");
-        handle = serializedObject.FindProperty("handle");
+        background = GameObject.Find("Joystick");
+        handle = GameObject.Find("Handle");
     }
 
     public override void OnInspectorGUI()
@@ -39,7 +39,7 @@ public class JoystickEditor : Editor
 
         if (handle != null)
         {
-            RectTransform handleRect = (RectTransform)handle.objectReferenceValue;
+            RectTransform handleRect = handle.GetComponent<RectTransform>();
             handleRect.anchorMax = center;
             handleRect.anchorMin = center;
             handleRect.pivot = center;
@@ -58,7 +58,7 @@ public class JoystickEditor : Editor
 
     protected virtual void DrawComponents()
     {
-        EditorGUILayout.ObjectField(background, new GUIContent("Background", "The background's RectTransform component."));
-        EditorGUILayout.ObjectField(handle, new GUIContent("Handle", "The handle's RectTransform component."));
+        // EditorGUILayout.ObjectField(background, new GUIContent("Background", "The background's RectTransform component."));
+        // EditorGUILayout.ObjectField(handle, new GUIContent("Handle", "The handle's RectTransform component."));
     }
 }

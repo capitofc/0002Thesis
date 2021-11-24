@@ -22,45 +22,68 @@ public class TuxAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = gameObject.GetComponent<SimpleWalkerController>().CalculateMovementDirection().normalized;
+        Vector3 direction = gameObject.GetComponent<AdvancedWalkerController>().GetMovementVelocity().normalized;
 
         if (Input.GetKeyDown(KeyCode.Space))
             jump();
 
         bool isMoving = false;
 
-        if (direction != Vector3.zero)
+        anim.SetBool("inAir", !mover.IsGrounded());
+
+        if (mover.IsGrounded().Equals(true))
         {
-            isMoving = true;
-            if (!sm.adSrc.isPlaying && mover.IsGrounded())
-                sm.PlayMusic(0);
+            anim.SetBool("Grounded", mover.IsGrounded());
+            if (direction != Vector3.zero)
+            {
+                isMoving = true;
+                if (!sm.adSrc.isPlaying && mover.IsGrounded())
+                    sm.PlayMusic(0);
+            }
+
+            else
+            {
+                isMoving = false;
+            }
+
+            anim.SetBool("isMoving", isMoving);
+            anim.SetBool("inAir", !mover.IsGrounded());
         }
 
-        else
-        {
-            isMoving = false;
-        }
+        anim.SetBool("Grounded", mover.IsGrounded());
 
 
-        anim.SetBool("isMoving", isMoving);
+        //Debug.Log(mover.IsGrounded());
     }
 
     public void playDash()
     {
         anim.Play("Dash");
-        anim.SetBool("Grounded", true);
     }
 
     public void playStun()
     {
         anim.Play("Stun");
-        anim.SetBool("Grounded", true);
+    }
+
+    public void playBump()
+    {
+        anim.Play("Bump");
+        anim.SetBool("isBumped", true);
+        if (!mover.IsGrounded())
+            anim.SetBool("inAir", true);
+    }
+
+    public void playFly()
+    {
+        anim.Play("Jump");
+        anim.SetBool("JumpOnly", false);
     }
 
     public void jump()
     {
         anim.Play("Jump");
-        anim.SetBool("Grounded", true);
+        anim.SetBool("JumpOnly", true);
 
         if (!sm.adSrc.isPlaying)
         {

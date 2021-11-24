@@ -9,7 +9,7 @@ public class Stage3Bounce : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Trix") || collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("Maze") || collision.gameObject.tag.Equals("Zilch"))
         {
-            SimpleWalkerController simp = collision.gameObject.GetComponentInChildren<SimpleWalkerController>();
+            AdvancedWalkerController simp = collision.gameObject.GetComponentInChildren<AdvancedWalkerController>();
             Skills skillFX = collision.gameObject.GetComponentInChildren<Skills>();
             skillFX.flyPlayer(collision.gameObject);
             simp.jump();
