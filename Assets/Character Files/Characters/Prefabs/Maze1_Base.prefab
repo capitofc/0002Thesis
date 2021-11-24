@@ -45116,8 +45116,8 @@ GameObject:
   - component: {fileID: 3291871006535443291}
   - component: {fileID: 3291871006535443290}
   - component: {fileID: 3291871006535443293}
-  - component: {fileID: 3767653752708219134}
   - component: {fileID: 2067603378653130085}
+  - component: {fileID: 8071461571924251929}
   m_Layer: 0
   m_Name: Maze1_Base
   m_TagString: Maze
@@ -45383,20 +45383,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3767653752708219134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3291871006535443292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 825df17602bc7b048b28ab9e3a3c2df0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pushForce: 0
-  gravity: 10
 --- !u!114 &2067603378653130085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45420,6 +45406,19 @@ MonoBehaviour:
   slopeLimit: 80
   useLocalMomentum: 0
   cameraTransform: {fileID: 3291871005376776702}
+--- !u!114 &8071461571924251929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291871006535443292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961dd461c6d361343b0143c9c638ddef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 10
 --- !u!1 &3291871006812736752
 GameObject:
   m_ObjectHideFlags: 0
@@ -59797,7 +59796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4483ea754ca6043a5118a42cf7f9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 3291871006535443283}
   lerpSpeed: 20
   smoothDampTime: 0.02
   extrapolatePosition: 0
@@ -59815,7 +59814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea00ad25c692c9d4881f3c19e75ca56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
+  controller: {fileID: 2067603378653130085}
   turnSpeed: 1500
   ignoreControllerMomentum: 0
 --- !u!1 &3291871007045840952

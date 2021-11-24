@@ -20,7 +20,6 @@ public class PlayerExtension : MonoBehaviour
 
     public void HitPlayer(Vector3 velocityF, float time)
 	{
-		Debug.Log("Player Extension");
 		rb.velocity = velocityF;
 		pushForce = velocityF.magnitude;
 		pushDir = Vector3.Normalize(velocityF);
