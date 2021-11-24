@@ -131,10 +131,22 @@ namespace CMF
             return jumpSpeed;
         }
 
-        // public Vector3 get_velocity()
-        // {
-        //     //return _velocity;
-        // }
+        public void pickUp() // trigger pick up
+        {
+            if (mover.IsGrounded())
+            {
+                GetComponent<TuxAnimations>().pickUp();
+                StartCoroutine(stopPlayer());
+            }
+        }
+
+        IEnumerator stopPlayer()
+        {
+            float oldSpeed = movementSpeed;
+            movementSpeed = 0.01f;
+            yield return new WaitForSeconds(.85f);
+            movementSpeed = oldSpeed;
+        }
 
         void Update()
         {

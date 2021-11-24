@@ -22,6 +22,10 @@ public class TuxAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.P))
+            controller.pickUp();
+
         Vector3 direction = gameObject.GetComponent<AdvancedWalkerController>().GetMovementVelocity().normalized;
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -91,5 +95,12 @@ public class TuxAnimations : MonoBehaviour
             }
         }
 
+    }
+    public void pickUp()
+    {
+        if (mover.IsGrounded())
+        {
+            anim.Play("Pick");
+        }
     }
 }

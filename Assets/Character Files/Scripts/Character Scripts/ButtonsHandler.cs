@@ -38,4 +38,9 @@ public class ButtonsHandler : MonoBehaviour
     {
         player.GetComponent<CharacterKeyboardInput>().jumpButton();
     }
+
+    public void pickUp()
+    {
+        player.GetComponent<AdvancedWalkerController>().pickUp();
+    }
 }
