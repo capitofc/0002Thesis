@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
         switch (choice)
         {
             case 0: adSrc.PlayOneShot(footsteps[Random.Range(0, 1)]); break;
-            case 1: adSrc.PlayOneShot(jump); Debug.Log("jump"); break;
+            case 1: adSrc.PlayOneShot(jump); break;
             case 2: break;
 
         }

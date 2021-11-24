@@ -140,8 +140,11 @@ namespace CMF
         {
             HandleJumpKeyInput();
 
-            if (Input.GetKeyDown(KeyCode.C)) // reset Joystick movement
-                myJs.resetJS();
+            if (Input.GetKeyDown(KeyCode.C))
+                joystick.SetActive(false);
+            if (Input.GetKeyDown(KeyCode.B))
+                joystick.SetActive(true);
+
         }
 
         //Handle jump booleans for later use in FixedUpdate;
@@ -524,21 +527,15 @@ namespace CMF
         //Events;
         public void jumpNow()
         {
-            if (mover.IsGrounded())
-            {
-                OnGroundContactLost();
-                OnJumpStart();
-            }
-
+            OnJumpStart();
+            OnGroundContactLost();
         }
 
         public void jump()
         {
-            if (mover.IsGrounded())
-            {
-                GetComponent<TuxAnimations>().jump();
-                IsJumpKeyPressed();
-            }
+            GetComponent<TuxAnimations>().jump();
+            OnJumpStart();
+            OnGroundContactLost();
         }
 
         //This function is called when the player has initiated a jump;

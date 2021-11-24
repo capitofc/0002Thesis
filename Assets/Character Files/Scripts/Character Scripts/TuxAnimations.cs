@@ -51,9 +51,6 @@ public class TuxAnimations : MonoBehaviour
         }
 
         anim.SetBool("Grounded", mover.IsGrounded());
-
-
-        //Debug.Log(mover.IsGrounded());
     }
 
     public void playDash()
@@ -82,13 +79,17 @@ public class TuxAnimations : MonoBehaviour
 
     public void jump()
     {
-        anim.Play("Jump");
-        anim.SetBool("JumpOnly", true);
-
-        if (!sm.adSrc.isPlaying)
+        if (mover.IsGrounded())
         {
-            sm.adSrc.Stop();
-            sm.PlayMusic(1);
+            anim.Play("Jump");
+            anim.SetBool("JumpOnly", true);
+
+            if (!sm.adSrc.isPlaying)
+            {
+                sm.adSrc.Stop();
+                sm.PlayMusic(1);
+            }
         }
+
     }
 }

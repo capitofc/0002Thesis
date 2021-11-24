@@ -11,14 +11,6 @@ public class ButtonsHandler : MonoBehaviour
     string[] tags = { "Maze", "Trix", "Zilch", "Player" };
     void Start()
     {
-        // player = GameObject.FindGameObjectWithTag("Maze");
-        // if (player == null)
-        //     player = GameObject.FindGameObjectWithTag("Trix");
-        // if (player == null)
-        //     player = GameObject.FindGameObjectWithTag("Zilch");
-        // if (player == null)
-        //     player = GameObject.FindGameObjectWithTag("Player");
-
         if (player == null)
         {
             for (int i = 0; i < tags.Length; i++)
@@ -44,6 +36,6 @@ public class ButtonsHandler : MonoBehaviour
 
     public void jump()
     {
-        player.GetComponent<AdvancedWalkerController>().jump();
+        player.GetComponent<CharacterKeyboardInput>().jumpButton();
     }
 }
