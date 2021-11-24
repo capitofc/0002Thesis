@@ -87,4 +87,9 @@ public class SkillControls : MonoBehaviour
         yield return new WaitForSeconds(skillCooldown);
         isCooldown = false;
     }
+
+    public Skills GetSkills()
+    {
+        return skill;
+    }
 }

@@ -45117,6 +45117,7 @@ GameObject:
   - component: {fileID: 3291871006535443291}
   - component: {fileID: 3291871006535443290}
   - component: {fileID: 3291871006535443293}
+  - component: {fileID: 3767653752708219134}
   m_Layer: 0
   m_Name: Maze1_Base
   m_TagString: Maze
@@ -45150,7 +45151,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291871006535443292}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 597f8880804bb164ca7391e720591f83, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -45396,6 +45397,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3767653752708219134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291871006535443292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825df17602bc7b048b28ab9e3a3c2df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushForce: 0
+  gravity: 10
 --- !u!1 &3291871006812736752
 GameObject:
   m_ObjectHideFlags: 0

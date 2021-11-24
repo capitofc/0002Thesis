@@ -107,6 +107,7 @@ public class Skills : MonoBehaviour
         anim.speed = 3.5f;
         skillFX.particles[3].SetActive(true);
 
+
         StartCoroutine(skillTime(flashDuration(), target, 4, normSpeed));
         StartCoroutine(disableParticle(3, flashDuration() + .3f, skillFX));
     }
@@ -118,9 +119,13 @@ public class Skills : MonoBehaviour
         rb = target.GetComponent<Rigidbody>();
         Skills skillFX = target.GetComponentInChildren<Skills>();
 
-        simp.setJumpSpeed(25f);
-
-        skillFX.particles[1].SetActive(true);
+        if (simp.IsGrounded())
+        {
+            simp.setJumpSpeed(25f);
+            simp.jump();
+            skillFX.particles[1].SetActive(true);
+        }
+        
 
         StartCoroutine(skillTime(2f, target, 2, 0));
         StartCoroutine(disableParticle(1, 2.5f, skillFX));
