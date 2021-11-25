@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 2728538521297192689}
   - component: {fileID: -9193397793347153760}
   - component: {fileID: 8225160062458781623}
+  - component: {fileID: -2244641009733841734}
   - component: {fileID: 4781556380805036643}
   - component: {fileID: 587240641287998525}
   m_Layer: 0
@@ -376,7 +377,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222504317800863183}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e3b2772a1ebd9d4589ea1731a5a3df2, type: 3}
   m_Name: 
@@ -396,6 +397,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 222504317811494685}
   skill: {fileID: 222504318058285731}
+  firstSkillBtnText: {fileID: 0}
+  firstSkillButton: {fileID: 0}
+  ultiSkillBtnText: {fileID: 0}
+  ultiSkillButton: {fileID: 0}
 --- !u!114 &222504317800863172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,7 +627,19 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   clientAuthority: 0
-  animator: {fileID: 0}
+  animator: {fileID: 587240641287998525}
+--- !u!114 &-2244641009733841734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222504317800863183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d3f93a54dec7e43a819a1fe8caaf8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4781556380805036643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19952,7 +19969,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillDuration: 0
-  pushDistance: 0
   particles:
   - {fileID: 222504319338548305}
   - {fileID: 222504319693907507}

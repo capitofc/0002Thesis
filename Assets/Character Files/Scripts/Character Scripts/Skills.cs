@@ -7,7 +7,6 @@ public class Skills : MonoBehaviour
 {
     // Start is called before the first frame update
     public float skillDuration;
-    public float pushDistance;
     Rigidbody rb;
     AdvancedWalkerController simp;
     [SerializeField] GameObject[] particles;
@@ -21,28 +20,15 @@ public class Skills : MonoBehaviour
         return skillDuration;
     }
 
-    public float pushDashDistance()
-    {
-        pushDistance = 50f;
-        return pushDistance;
-    }
-
     public float flashDuration()
     {
-        skillDuration = .5f;
+        skillDuration = 1.25f;
         return skillDuration;
-    }
-
-    public float flyDistance()
-    {
-        pushDistance = 500f;
-        return pushDistance;
     }
 
     public void slow(GameObject target)
     {
-        Debug.Log("slow");
-        Animator anim = target.GetComponentInChildren<Animator>();
+        Animator anim = target.GetComponent<Animator>();
         simp = target.GetComponent<AdvancedWalkerController>();
         SoundManager sound = target.GetComponent<SoundManager>();
         Skills skillFX = target.GetComponentInChildren<Skills>();
@@ -65,7 +51,6 @@ public class Skills : MonoBehaviour
 
     public void stun(GameObject target)
     {
-        Debug.Log("stun");
         simp = target.GetComponent<AdvancedWalkerController>();
         TuxAnimations anim = target.GetComponent<TuxAnimations>();
         SoundManager sound = target.GetComponent<SoundManager>();
@@ -99,7 +84,7 @@ public class Skills : MonoBehaviour
     public void flash(GameObject target)
     {
         simp = target.GetComponent<AdvancedWalkerController>();
-        Animator anim = target.GetComponentInChildren<Animator>();
+        Animator anim = target.GetComponent<Animator>();
         Skills skillFX = target.GetComponentInChildren<Skills>();
         float normSpeed = anim.speed;
         float speed = simp.getMovementSpeed();
@@ -122,12 +107,12 @@ public class Skills : MonoBehaviour
 
         if (simp.IsGrounded())
         {
-            simp.setJumpSpeed(25f);
+            simp.setJumpSpeed(15f);
             simp.jump();
             skillFX.particles[1].SetActive(true);
         }
-        
-        simp.setJumpSpeed(25f);
+
+        simp.setJumpSpeed(15);
         simp.jumpNow();
 
         skillFX.particles[1].SetActive(true);
@@ -166,7 +151,7 @@ public class Skills : MonoBehaviour
             target.GetComponent<AdvancedWalkerController>().setMovementSpeed(7f);
             target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
             target.GetComponent<SoundManager>().adSrc.pitch = 1f;
-            Animator anim = target.GetComponentInChildren<Animator>();
+            Animator anim = target.GetComponent<Animator>();
             anim.speed = animSpeed;
         }
 
@@ -174,7 +159,7 @@ public class Skills : MonoBehaviour
         {
             target.GetComponent<AdvancedWalkerController>().setMovementSpeed(7f);
             target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
-            Animator anim = target.GetComponentInChildren<Animator>();
+            Animator anim = target.GetComponent<Animator>();
             anim.speed = animSpeed;
         }
     }

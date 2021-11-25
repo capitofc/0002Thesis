@@ -25,40 +25,40 @@ public class PlayerLanExtension : NetworkBehaviour
         }
     }
 
-    [Command]
-    public void CmdSetAir()
-    {
-        anim.SetBool("inAir", !mover.IsGrounded());
-    }
+    // [Command]
+    // public void CmdSetAir()
+    // {
+    //     anim.SetBool("inAir", !mover.IsGrounded());
+    // }
 
-    [Command]
-    public void CmdGrounded()
-    {
-        anim.SetBool("Grounded", mover.IsGrounded());
-    }
+    // [Command]
+    // public void CmdGrounded()
+    // {
+    //     anim.SetBool("Grounded", mover.IsGrounded());
+    // }
 
-    [Command]
-    public void CmdMoving(bool isMoving)
-    {
-        anim.SetBool("isMoving", isMoving);
-    }
+    // [Command]
+    // public void CmdMoving(bool isMoving)
+    // {
+    //     anim.SetBool("isMoving", isMoving);
+    // }
 
-    [TargetRpc]
-    public void RpcSetAir()
-    {
-        anim.SetBool("inAir", !mover.IsGrounded());
-    }
+    // [TargetRpc]
+    // public void RpcSetAir()
+    // {
+    //     anim.SetBool("inAir", !mover.IsGrounded());
+    // }
 
-    [TargetRpc]
-    public void RpcGrounded()
-    {
-        anim.SetBool("Grounded", mover.IsGrounded());
-    }
+    // [TargetRpc]
+    // public void RpcGrounded()
+    // {
+    //     anim.SetBool("Grounded", mover.IsGrounded());
+    // }
 
-    [TargetRpc]
-    public void RpcMoving(bool isMoving)
-    {
-        anim.SetBool("isMoving", isMoving);
-    }
+    // [TargetRpc]
+    // public void RpcMoving(bool isMoving)
+    // {
+    //     anim.SetBool("isMoving", isMoving);
+    // }
 
 }

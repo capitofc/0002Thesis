@@ -45122,6 +45122,7 @@ GameObject:
   - component: {fileID: 7988622039067440984}
   - component: {fileID: 2498871237563425654}
   - component: {fileID: 2485149067172805708}
+  - component: {fileID: -2183623297948801023}
   - component: {fileID: -2783309368976739475}
   m_Layer: 0
   m_Name: Maze1_Base
@@ -45238,7 +45239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291871006535443292}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e3b2772a1ebd9d4589ea1731a5a3df2, type: 3}
   m_Name: 
@@ -45258,6 +45259,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 3291871005376776677}
   skill: {fileID: 3291871007492124942}
+  firstSkillBtnText: {fileID: 0}
+  firstSkillButton: {fileID: 0}
+  ultiSkillBtnText: {fileID: 0}
+  ultiSkillButton: {fileID: 0}
 --- !u!114 &3291871006535443291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45500,6 +45505,19 @@ MonoBehaviour:
   syncInterval: 0.1
   clientAuthority: 1
   animator: {fileID: -2783309368976739475}
+--- !u!114 &-2183623297948801023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291871006535443292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d3f93a54dec7e43a819a1fe8caaf8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
 --- !u!95 &-2783309368976739475
 Animator:
   serializedVersion: 3
@@ -65146,7 +65164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillDuration: 0
-  pushDistance: 0
   particles:
   - {fileID: 3291871005412701527}
   - {fileID: 3291871006812736754}

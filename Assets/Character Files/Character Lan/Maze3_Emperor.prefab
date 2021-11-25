@@ -10072,7 +10072,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillDuration: 0
-  pushDistance: 0
   particles:
   - {fileID: 2193243919894353757}
   - {fileID: 2193243920118786650}
@@ -14998,6 +14997,7 @@ GameObject:
   - component: {fileID: 8246589746994693883}
   - component: {fileID: -3088924843837505210}
   - component: {fileID: 1157745319782860579}
+  - component: {fileID: -8980192621306962582}
   - component: {fileID: 8777027082912949521}
   - component: {fileID: 3549968426789692034}
   m_Layer: 0
@@ -15115,7 +15115,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2193243920325789490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e3b2772a1ebd9d4589ea1731a5a3df2, type: 3}
   m_Name: 
@@ -15135,6 +15135,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 2193243921265903197}
   skill: {fileID: 2193243920017773179}
+  firstSkillBtnText: {fileID: 0}
+  firstSkillButton: {fileID: 0}
+  ultiSkillBtnText: {fileID: 0}
+  ultiSkillButton: {fileID: 0}
 --- !u!114 &2193243920325789449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15361,7 +15365,19 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   clientAuthority: 0
-  animator: {fileID: 0}
+  animator: {fileID: 3549968426789692034}
+--- !u!114 &-8980192621306962582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193243920325789490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d3f93a54dec7e43a819a1fe8caaf8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8777027082912949521
 MonoBehaviour:
   m_ObjectHideFlags: 0

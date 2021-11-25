@@ -11,6 +11,9 @@ TagManager:
   - Maze
   - Blue
   - Enemy
+  - UltiPoint
+  - SpeedUp
+  - CDReset
   layers:
   - Default
   - TransparentFX

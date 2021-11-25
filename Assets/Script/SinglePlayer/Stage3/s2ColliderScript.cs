@@ -43,5 +43,5 @@ public class s2ColliderScript : MonoBehaviour
         GetComponent<BoxCollider>().isTrigger = false;
     }
 
-    
+
 }
