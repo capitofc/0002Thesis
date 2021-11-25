@@ -22,39 +22,81 @@ public class TuxAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = gameObject.GetComponent<AdvancedWalkerController>().GetMovementVelocity().normalized;
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            jump();
-
-        bool isMoving = false;
-
-        anim.SetBool("inAir", !mover.IsGrounded());
-
-        if (mover.IsGrounded().Equals(true))
+        if(GetComponent<PlayerLanExtension>().isLocalPlayer && GetComponent<PlayerLanExtension>().isClient)
         {
-            anim.SetBool("Grounded", mover.IsGrounded());
-            if (direction != Vector3.zero)
-            {
-                isMoving = true;
-                if (!sm.adSrc.isPlaying && mover.IsGrounded())
-                    sm.PlayMusic(0);
-            }
+            Vector3 direction = gameObject.GetComponent<AdvancedWalkerController>().GetMovementVelocity().normalized;
 
-            else
-            {
-                isMoving = false;
-            }
+            if (Input.GetKeyDown(KeyCode.Space))
+                jump();
 
-            anim.SetBool("isMoving", isMoving);
-            anim.SetBool("inAir", !mover.IsGrounded());
+            bool isMoving = false;
+            GetComponent<PlayerLanExtension>().CmdGrounded();
+            //anim.SetBool("inAir", !mover.IsGrounded());
+
+            if (mover.IsGrounded().Equals(true))
+            {
+                GetComponent<PlayerLanExtension>().CmdGrounded();
+                //anim.SetBool("Grounded", mover.IsGrounded());
+                if (direction != Vector3.zero)
+                {
+                    isMoving = true;
+                    if (!sm.adSrc.isPlaying && mover.IsGrounded())
+                        sm.PlayMusic(0);
+                }
+
+                else
+                {
+                    isMoving = false;
+                }
+
+                GetComponent<PlayerLanExtension>().CmdMoving(isMoving);
+                //anim.SetBool("isMoving", isMoving);
+                GetComponent<PlayerLanExtension>().CmdSetAir();
+                //anim.SetBool("inAir", !mover.IsGrounded());
+            }
+            GetComponent<PlayerLanExtension>().CmdGrounded();
+            //anim.SetBool("Grounded", mover.IsGrounded());
         }
+        else if(GetComponent<PlayerLanExtension>().isLocalPlayer)
+        {
+            Debug.Log("I am here");
+            Vector3 direction = gameObject.GetComponent<AdvancedWalkerController>().GetMovementVelocity().normalized;
 
-        anim.SetBool("Grounded", mover.IsGrounded());
+            if (Input.GetKeyDown(KeyCode.Space))
+                jump();
 
+            bool isMoving = false;
 
-        //Debug.Log(mover.IsGrounded());
+            GetComponent<PlayerLanExtension>().RpcGrounded();
+            //anim.SetBool("inAir", !mover.IsGrounded());
+
+            if (mover.IsGrounded().Equals(true))
+            {
+                GetComponent<PlayerLanExtension>().RpcGrounded();
+                //anim.SetBool("Grounded", mover.IsGrounded());
+                if (direction != Vector3.zero)
+                {
+                    isMoving = true;
+                    if (!sm.adSrc.isPlaying && mover.IsGrounded())
+                        sm.PlayMusic(0);
+                }
+
+                else
+                {
+                    isMoving = false;
+                }
+
+                GetComponent<PlayerLanExtension>().RpcMoving(isMoving);
+                //anim.SetBool("isMoving", isMoving);
+                GetComponent<PlayerLanExtension>().RpcSetAir();
+                //anim.SetBool("inAir", !mover.IsGrounded());
+            }
+            GetComponent<PlayerLanExtension>().RpcGrounded();
+            //anim.SetBool("Grounded", mover.IsGrounded());
+        }
     }
+
+
 
     public void playDash()
     {
@@ -82,13 +124,24 @@ public class TuxAnimations : MonoBehaviour
 
     public void jump()
     {
-        anim.Play("Jump");
-        anim.SetBool("JumpOnly", true);
-
-        if (!sm.adSrc.isPlaying)
+        if (mover.IsGrounded())
         {
-            sm.adSrc.Stop();
-            sm.PlayMusic(1);
+            anim.Play("Jump");
+            anim.SetBool("JumpOnly", true);
+
+            if (!sm.adSrc.isPlaying)
+            {
+                sm.adSrc.Stop();
+                sm.PlayMusic(1);
+            }
+        }
+
+    }
+    public void pickUp()
+    {
+        if (mover.IsGrounded())
+        {
+            anim.Play("Pick");
         }
     }
 }

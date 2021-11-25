@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 
 [ExecuteInEditMode]
@@ -21,17 +22,18 @@ public class Colorizer : MonoBehaviour {
 	}
 
 	void ChangeColor(GameObject effect, Color color)
-	{	
+	{
+		Material mat;
 		var rend = effect.GetComponentsInChildren<Renderer>();
 		foreach (var r in rend) {
 
-			#if UNITY_EDITOR 
-			var mat = r.sharedMaterial;
-			#else
-			if(UseInstanceWhenNotEditorMode) var mat = r.material;
+			
+			mat = r.sharedMaterial;
+
+			if(UseInstanceWhenNotEditorMode) mat = r.material;
 			else mat = r.sharedMaterial;
-			#endif
-		
+
+			
 			if(mat==null || !mat.HasProperty("_TintColor")) continue;
 			var oldColor = mat.GetColor("_TintColor");
 			color.a = oldColor.a;

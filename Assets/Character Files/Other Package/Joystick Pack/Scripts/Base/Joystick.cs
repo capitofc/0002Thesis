@@ -59,9 +59,19 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchoredPosition = Vector2.zero;
     }
 
-    public void resetJS()
+    public void resetJoystick()
     {
         input = Vector2.zero;
+    }
+
+    void resetPos()
+    {
+        handle.anchoredPosition = Vector2.zero;
+    }
+
+    void OnDisable()
+    {
+        resetJoystick();
     }
 
     protected virtual void Update()

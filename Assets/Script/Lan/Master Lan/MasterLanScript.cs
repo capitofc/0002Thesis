@@ -18,9 +18,13 @@ public class MasterLanScript : NetworkManager
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             GetComponent<NetworkDiscoveryHUD>().StartHostLan();
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GetComponent<NetworkDiscoveryHUD>().JoinAsClient();
         }
     }
 

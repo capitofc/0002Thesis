@@ -160,7 +160,9 @@ namespace Mirror.Discovery
                 }
                 if(discoveredServers.Count > 0)
                 {
-                    Connect(discoveredServers[0]);
+                    IEnumerator enumerator = discoveredServers.Keys.GetEnumerator();
+                    enumerator.MoveNext();
+                    Connect(discoveredServers[(long)enumerator.Current]);
                     StopAllCoroutines();
                 }
                 else
