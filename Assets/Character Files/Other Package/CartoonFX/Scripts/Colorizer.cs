@@ -1,43 +1,50 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 [ExecuteInEditMode]
-public class Colorizer : MonoBehaviour {
+public class Colorizer : MonoBehaviour
+{
 
-	public Color TintColor;
-	public bool UseInstanceWhenNotEditorMode = true;
+    public Color TintColor;
+    public bool UseInstanceWhenNotEditorMode = true;
 
-	private Color oldColor;
+    private Color oldColor;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(oldColor != TintColor) ChangeColor(gameObject, TintColor);
-		oldColor = TintColor;
-	}
+    // Use this for initialization
+    void Start()
+    {
 
-	void ChangeColor(GameObject effect, Color color)
-	{	
-		var rend = effect.GetComponentsInChildren<Renderer>();
-		foreach (var r in rend) {
+    }
 
-			#if UNITY_EDITOR 
-			var mat = r.sharedMaterial;
-			#else
-			if(UseInstanceWhenNotEditorMode) var mat = r.material;
-			else mat = r.sharedMaterial;
-			#endif
-		
-			if(mat==null || !mat.HasProperty("_TintColor")) continue;
-			var oldColor = mat.GetColor("_TintColor");
-			color.a = oldColor.a;
-			mat.SetColor("_TintColor", color);
-		}
-		var light = effect.GetComponentInChildren<Light>();
-		if(light!=null) light.color = color;
-	}
+    // Update is called once per frame
+    void Update()
+    {
+        if (oldColor != TintColor) ChangeColor(gameObject, TintColor);
+        oldColor = TintColor;
+    }
+
+    void ChangeColor(GameObject effect, Color color)
+    {
+        Material mat;
+        var rend = effect.GetComponentsInChildren<Renderer>();
+        foreach (var r in rend)
+        {
+
+            mat = r.sharedMaterial;
+
+            if (UseInstanceWhenNotEditorMode)
+                mat = r.material;
+            else
+                mat = r.sharedMaterial;
+
+
+            if (mat == null || !mat.HasProperty("_TintColor")) continue;
+            var oldColor = mat.GetColor("_TintColor");
+            color.a = oldColor.a;
+            mat.SetColor("_TintColor", color);
+        }
+        var light = effect.GetComponentInChildren<Light>();
+        if (light != null) light.color = color;
+    }
 }

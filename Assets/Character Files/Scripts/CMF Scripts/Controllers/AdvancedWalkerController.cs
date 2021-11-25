@@ -157,6 +157,8 @@ namespace CMF
             if (Input.GetKeyDown(KeyCode.B))
                 joystick.SetActive(true);
 
+            //GetComponent<TuxAnimations>().movePlayer(GetMovementVelocity());
+
         }
 
         //Handle jump booleans for later use in FixedUpdate;

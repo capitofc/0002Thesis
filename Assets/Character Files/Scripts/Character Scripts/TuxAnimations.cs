@@ -24,7 +24,7 @@ public class TuxAnimations : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.P))
-            controller.pickUp();
+            pickUp();
 
         Vector3 direction = gameObject.GetComponent<AdvancedWalkerController>().GetMovementVelocity().normalized;
 
