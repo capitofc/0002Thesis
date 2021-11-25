@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Character Files/Demo Scene/Character Demo.unity
     guid: 7d1bca068c75e0541878c71e4ff435cc
+  - enabled: 1
+    path: Assets/Scene/Multiplayer/LAN/MasterLanLobby.unity
+    guid: 203976065d7a1d24bbdbe0ccd51ef0c3
   m_configObjects: {}

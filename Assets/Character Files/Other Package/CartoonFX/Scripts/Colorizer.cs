@@ -1,6 +1,6 @@
 using UnityEngine;
-using System.Collections;
 using UnityEditor;
+using System.Collections;
 
 [ExecuteInEditMode]
 public class Colorizer : MonoBehaviour
@@ -31,12 +31,11 @@ public class Colorizer : MonoBehaviour
         foreach (var r in rend)
         {
 
+
             mat = r.sharedMaterial;
 
-            if (UseInstanceWhenNotEditorMode)
-                mat = r.material;
-            else
-                mat = r.sharedMaterial;
+            if (UseInstanceWhenNotEditorMode) mat = r.material;
+            else mat = r.sharedMaterial;
 
 
             if (mat == null || !mat.HasProperty("_TintColor")) continue;

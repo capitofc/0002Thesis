@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace CMF
 {
@@ -89,7 +90,6 @@ namespace CMF
             ceilingDetector = GetComponent<CeilingDetector>();
 
 
-
             if (characterInput == null)
                 Debug.LogWarning("No character input script has been attached to this gameobject", this.gameObject);
 
@@ -157,9 +157,8 @@ namespace CMF
             if (Input.GetKeyDown(KeyCode.B))
                 joystick.SetActive(true);
 
-            //GetComponent<TuxAnimations>().movePlayer(GetMovementVelocity());
-
         }
+
 
         //Handle jump booleans for later use in FixedUpdate;
         void HandleJumpKeyInput()
@@ -187,6 +186,7 @@ namespace CMF
         //This function must be called every fixed update, in order for the controller to work correctly;
         void ControllerUpdate()
         {
+
             //Check if mover is grounded;
             mover.CheckForGround();
 
@@ -238,6 +238,16 @@ namespace CMF
         //This function can be overridden by inheriting scripts to implement different player controls;
         protected virtual Vector3 CalculateMovementDirection()
         {
+            #region NETWORKING CODES
+            //FOR MIRROR NETWORKING
+            if (gameObject.GetComponent<NetworkIdentity>())
+            {
+                if (!gameObject.GetComponent<PlayerLanExtension>().isLocalPlayer)
+                {
+                    return Vector3.zero;
+                }
+            }
+            #endregion
             //If no character input script is attached to this object, return;
             if (characterInput == null)
                 return Vector3.zero;
@@ -286,6 +296,16 @@ namespace CMF
         //Returns 'true' if the player presses the jump key;
         protected virtual bool IsJumpKeyPressed()
         {
+            #region NETWORKING CODES
+            //FOR MIRROR NETWORKING
+            if (gameObject.GetComponent<NetworkIdentity>())
+            {
+                if (!gameObject.GetComponent<PlayerLanExtension>().isLocalPlayer)
+                {
+                    return false;
+                }
+            }
+            #endregion
             //If no character input script is attached to this object, return;
             if (characterInput == null)
                 return false;

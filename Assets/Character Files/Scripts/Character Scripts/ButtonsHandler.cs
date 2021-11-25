@@ -6,24 +6,10 @@ using CMF;
 public class ButtonsHandler : MonoBehaviour
 {
     // Start is called before the first frame update
-    GameObject player;
-    SkillControls cast;
+    public GameObject player;
+    public SkillControls cast;
     string[] tags = { "Maze", "Trix", "Zilch", "Player" };
-    void Start()
-    {
-        if (player == null)
-        {
-            for (int i = 0; i < tags.Length; i++)
-            {
-                player = GameObject.FindGameObjectWithTag(tags[i]);
-                if (player != null)
-                    break;
-            }
 
-        }
-
-        cast = player.GetComponent<SkillControls>();
-    }
     public void castSkill()
     {
         cast.castSkill();
