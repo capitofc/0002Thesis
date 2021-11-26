@@ -196,6 +196,7 @@ namespace CMF
         //Return only the current movement velocity (without any vertical velocity);
         public override Vector3 GetMovementVelocity()
         {
+            Debug.Log(lastVelocity);
             return lastVelocity;
         }
 

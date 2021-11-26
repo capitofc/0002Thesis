@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bb3607333838384fa8702d3b19a5b03, type: 2}
+  - {fileID: 2100000, guid: d47ae0396110840289d47476d8289fbf, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 5263193849274771173}
   - component: {fileID: 5263193849274771171}
   - component: {fileID: 5263193849274771170}
-  - component: {fileID: 5263193849274771169}
   - component: {fileID: 5328727303880567045}
   m_Layer: 0
   m_Name: Ball
@@ -134,7 +133,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 638525f9217aa9c4e930b8a87a3e6b8e, type: 2}
+  - {fileID: -876546973899608171, guid: 5b6a137442f582c4ba542379ba49b387, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -163,26 +162,12 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5263193849274771168}
-  m_Material: {fileID: 13400000, guid: 4f9b3b62200b5134bb2c30750747a446, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.01
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5263193849274771169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5263193849274771168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdffcc51f538bef4c8abd3b5bbb6ff17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 25
-  stunTime: 0.5
 --- !u!33 &5328727303880567045
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -200,7 +185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5263193850122822932}
-  - component: {fileID: 5263193850122822933}
+  - component: {fileID: 5624280498124216138}
   m_Layer: 0
   m_Name: Pendulum
   m_TagString: Untagged
@@ -224,7 +209,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5263193850122822933
+--- !u!114 &5624280498124216138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,9 +218,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5263193850122822931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 961fa4ff4b5f6fa448e33eb86dbad1f0, type: 3}
+  m_Script: {fileID: 11500000, guid: e0c7bc0b61917e246895ea089961f67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1.5
   limit: 75
-  randomStart: 1
+  startValue: 0

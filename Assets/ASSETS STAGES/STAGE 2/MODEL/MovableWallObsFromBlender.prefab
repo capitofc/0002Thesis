@@ -42,13 +42,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9025486687718024461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c78eaffd4b5a704daa689d5bc3e3e09, type: 3}
+  m_Script: {fileID: 11500000, guid: 71f1afc4a15e71643a9390fd974be98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 5
-  horizontal: 0
-  speed: 3
-  offset: 0
+  isDown: 1
+  isRandom: 1
+  speed: 2
 --- !u!65 &9025486687718024462
 BoxCollider:
   m_ObjectHideFlags: 0

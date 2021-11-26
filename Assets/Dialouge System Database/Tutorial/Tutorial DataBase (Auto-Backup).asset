@@ -665,7 +665,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: But first, you should know how to control your character.
+        value: You should know how to control your character.
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1224,7 +1224,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 749.24274
+        x: 747.7043
         y: 226.84589
         width: 160
         height: 30
@@ -1448,7 +1448,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 202.79599
-        y: 134.66824
+        y: 133.50545
         width: 160
         height: 30
     - id: 21
@@ -1500,8 +1500,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 6.168396
-        y: 143.36046
+        x: 3.8428192
+        y: 142.19766
         width: 160
         height: 30
     - id: 22
@@ -1553,8 +1553,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 393.78235
-        y: 353.51645
+        x: 391.45673
+        y: 354.67926
         width: 160
         height: 30
     - id: 23
@@ -1613,7 +1613,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 752.22974
-        y: 140.02054
+        y: 141.55899
         width: 160
         height: 30
     - id: 24
@@ -2125,8 +2125,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.47000077
+    canvasScrollPosition: {x: 53.882767, y: 79.99994}
+    canvasZoom: 0.6500007
   - id: 2
     fields:
     - title: Title
@@ -2800,7 +2800,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.5800004
+    canvasZoom: 0.5500004
   syncInfo:
     syncActors: 0
     syncItems: 0

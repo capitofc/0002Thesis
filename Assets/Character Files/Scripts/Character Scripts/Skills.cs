@@ -9,7 +9,7 @@ public class Skills : MonoBehaviour
     public float skillDuration;
     public float pushDistance;
     Rigidbody rb;
-    SimpleWalkerController simp;
+    AdvancedWalkerController simp;
     [SerializeField] GameObject[] particles;
 
 
@@ -43,7 +43,7 @@ public class Skills : MonoBehaviour
     {
         Debug.Log("slow");
         Animator anim = target.GetComponentInChildren<Animator>();
-        simp = target.GetComponent<SimpleWalkerController>();
+        simp = target.GetComponent<AdvancedWalkerController>();
         SoundManager sound = target.GetComponent<SoundManager>();
         Skills skillFX = target.GetComponentInChildren<Skills>();
 
@@ -66,7 +66,7 @@ public class Skills : MonoBehaviour
     public void stun(GameObject target)
     {
         Debug.Log("stun");
-        simp = target.GetComponent<SimpleWalkerController>();
+        simp = target.GetComponent<AdvancedWalkerController>();
         TuxAnimations anim = target.GetComponent<TuxAnimations>();
         SoundManager sound = target.GetComponent<SoundManager>();
         Skills skillFX = target.GetComponentInChildren<Skills>();
@@ -98,7 +98,7 @@ public class Skills : MonoBehaviour
 
     public void flash(GameObject target)
     {
-        simp = target.GetComponent<SimpleWalkerController>();
+        simp = target.GetComponent<AdvancedWalkerController>();
         Animator anim = target.GetComponentInChildren<Animator>();
         Skills skillFX = target.GetComponentInChildren<Skills>();
         float normSpeed = anim.speed;
@@ -114,7 +114,7 @@ public class Skills : MonoBehaviour
     public void flyPlayer(GameObject target) //parameter must be the player
     {
         Mover mover = target.GetComponent<Mover>();
-        simp = target.GetComponent<SimpleWalkerController>();
+        simp = target.GetComponent<AdvancedWalkerController>();
         rb = target.GetComponent<Rigidbody>();
         Skills skillFX = target.GetComponentInChildren<Skills>();
 
@@ -138,22 +138,22 @@ public class Skills : MonoBehaviour
 
         if (choice == 1)
         {
-            target.GetComponent<SimpleWalkerController>().setMovementSpeed(7f);
-            target.GetComponent<SimpleWalkerController>().setJumpSpeed(10f);
+            target.GetComponent<AdvancedWalkerController>().setMovementSpeed(7f);
+            target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
             target.GetComponent<SoundManager>().adSrc.pitch = 1f;
         }
 
 
         else if (choice == 2)
         {
-            //target.GetComponent<SimpleWalkerController>().setGravity(47f);
-            target.GetComponent<SimpleWalkerController>().setJumpSpeed(10f);
+            //target.GetComponent<AdvancedWalkerController>().setGravity(47f);
+            target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
         }
 
         else if (choice == 3)
         {
-            target.GetComponent<SimpleWalkerController>().setMovementSpeed(7f);
-            target.GetComponent<SimpleWalkerController>().setJumpSpeed(10f);
+            target.GetComponent<AdvancedWalkerController>().setMovementSpeed(7f);
+            target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
             target.GetComponent<SoundManager>().adSrc.pitch = 1f;
             Animator anim = target.GetComponentInChildren<Animator>();
             anim.speed = animSpeed;
@@ -161,8 +161,8 @@ public class Skills : MonoBehaviour
 
         else if (choice == 4)
         {
-            target.GetComponent<SimpleWalkerController>().setMovementSpeed(7f);
-            target.GetComponent<SimpleWalkerController>().setJumpSpeed(10f);
+            target.GetComponent<AdvancedWalkerController>().setMovementSpeed(7f);
+            target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
             Animator anim = target.GetComponentInChildren<Animator>();
             anim.speed = animSpeed;
         }
