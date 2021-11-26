@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillControls : MonoBehaviour
 {
@@ -10,6 +11,16 @@ public class SkillControls : MonoBehaviour
     bool isCooldown = false;
     float skillCooldown = 5f;
     [SerializeField] Skills skill;
+
+    bool isUltiPoint = false;
+
+
+
+    public Text firstSkillBtnText;
+    public Button firstSkillButton;
+
+    public Text ultiSkillBtnText;
+    public Button ultiSkillButton;
 
     void Start()
     {
@@ -28,6 +39,10 @@ public class SkillControls : MonoBehaviour
             castUltimate();
         }
 
+        if (isUltiPoint == false)
+        {
+            // ultiSkillButton.interactable = false;
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
             skill.GetComponent<Skills>().slow(gameObject);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -53,38 +68,114 @@ public class SkillControls : MonoBehaviour
         }
 
         else
-            Debug.Log("Skill in cooldown");
+            Debug.Log("Skill in cooldown, wait for: " + countdown + " seconds.");
 
 
     }
 
     public void castUltimate()
     {
-        if (penguinType == "Trix")
+        if (isUltiPoint == true)
         {
-            skill.GetComponent<Skills>().dash(gameObject);
+            if (penguinType == "Trix")
+            {
+                skill.GetComponent<Skills>().dash(gameObject);
+            }
+
+            else if (penguinType == "Maze")
+            {
+                skill.GetComponent<Skills>().flyPlayer(gameObject);
+            }
+
+            else if (penguinType == "Zilch")
+            {
+                skill.GetComponent<Skills>().flash(gameObject);
+            }
+
+            //ultiSkillButton.interactable = false;
+            setUltiPoint(false);
         }
 
-        else if (penguinType == "Maze")
-        {
-            skill.GetComponent<Skills>().flyPlayer(gameObject);
-        }
+        else
+            Debug.Log("Collect UltiPoint to Cast Ultimate Skill!");
 
-        else if (penguinType == "Zilch")
-        {
-            skill.GetComponent<Skills>().flash(gameObject);
-        }
     }
 
     void startCooldown()
     {
         isCooldown = true;
+        //firstSkillButton.interactable = false;
         StartCoroutine(cooldown());
     }
 
     IEnumerator cooldown()
     {
-        yield return new WaitForSeconds(skillCooldown);
+        while (skillCooldown >= 0)
+        {
+            skillCooldown--;
+            if (skillCooldown == 0)
+            {
+                StopAllCoroutines();
+                isCooldown = false;
+                // firstSkillBtnText.text = "THROW SNOW BALL!";
+                //firstSkillButton.interactable = true;
+                skillCooldown = 5f;
+            }
+            else if (skillCooldown >= 1)
+            {
+                //updateButtonCDTxt();
+                displayCD(skillCooldown);
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    private void updateButtonCDTxt()
+    {
+        firstSkillBtnText.text = skillCooldown.ToString();
+    }
+
+    float countdown;
+    void displayCD(float val)
+    {
+        countdown = val;
+    }
+
+    public void coolDownPowerUp()
+    {
+        StopAllCoroutines();
+        skillCooldown = 5f;
         isCooldown = false;
+        // firstSkillBtnText.text = "THROW SNOW BALL!";
+        // firstSkillButton.interactable = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("CoolDownPowerUp"))
+        {
+            coolDownPowerUp();
+        }
+        else if (collision.gameObject.tag.Equals("UltiPoint"))
+        {
+            isUltiPoint = true;
+            // ultiSkillButton.interactable = true;
+        }
+    }
+
+    public void resetCD()
+    {
+        isCooldown = false;
+        StopAllCoroutines();
+    }
+
+    public void setUltiPoint(bool val)
+    {
+        isUltiPoint = val;
+    }
+    public Skills GetSkills()
+    {
+        return skill;
     }
 }

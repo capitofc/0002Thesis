@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace CMF
 {
@@ -60,11 +61,7 @@ namespace CMF
 
         [Tooltip("Whether to calculate and apply momentum relative to the controller's transform.")]
         public bool useLocalMomentum = false;
-            
-        [SerializeField]
         GameObject joystick;
-
-
         Joystick myJs;
 
         //Enum describing basic controller states; 
@@ -85,7 +82,7 @@ namespace CMF
         //Get references to all necessary components;
         void Awake()
         {
-            //joystick = GameObject.Find("Joystick");
+            joystick = GameObject.Find("Joystick");
             myJs = joystick.GetComponent<Joystick>();
             mover = GetComponent<Mover>();
             tr = transform;
@@ -102,22 +99,6 @@ namespace CMF
         //This function is called right after Awake(); It can be overridden by inheriting scripts;
         protected virtual void Setup()
         {
-        }
-
-        public void pickUp() // trigger pick up
-        {
-            if (mover.IsGrounded())
-            {
-                GetComponent<TuxAnimations>().pickUp();
-                StartCoroutine(stopPlayer());
-            }
-        }
-        IEnumerator stopPlayer()
-        {
-            float oldSpeed = movementSpeed;
-            movementSpeed = 0.01f;
-            yield return new WaitForSeconds(.85f);
-            movementSpeed = oldSpeed;
         }
 
         public void setMovementSpeed(float newSpeed)
@@ -150,15 +131,34 @@ namespace CMF
             return jumpSpeed;
         }
 
-        // public Vector3 get_velocity()
-        // {
-        //     //return _velocity;
-        // }
+        public void pickUp() // trigger pick up
+        {
+            if (mover.IsGrounded())
+            {
+                GetComponent<TuxAnimations>().pickUp();
+               // StartCoroutine(stopPlayer());
+            }
+        }
+
+        IEnumerator stopPlayer()
+        {
+            float oldSpeed = movementSpeed;
+            movementSpeed = 0.01f;
+            yield return new WaitForSeconds(.85f);
+            movementSpeed = oldSpeed;
+        }
 
         void Update()
         {
             HandleJumpKeyInput();
+
+            if (Input.GetKeyDown(KeyCode.C))
+                joystick.SetActive(false);
+            if (Input.GetKeyDown(KeyCode.B))
+                joystick.SetActive(true);
+
         }
+
 
         //Handle jump booleans for later use in FixedUpdate;
         void HandleJumpKeyInput()
@@ -186,6 +186,7 @@ namespace CMF
         //This function must be called every fixed update, in order for the controller to work correctly;
         void ControllerUpdate()
         {
+
             //Check if mover is grounded;
             mover.CheckForGround();
 
@@ -237,6 +238,16 @@ namespace CMF
         //This function can be overridden by inheriting scripts to implement different player controls;
         protected virtual Vector3 CalculateMovementDirection()
         {
+            #region NETWORKING CODES
+            //FOR MIRROR NETWORKING
+            if (gameObject.GetComponent<NetworkIdentity>())
+            {
+                if (!gameObject.GetComponent<PlayerLanExtension>().isLocalPlayer)
+                {
+                    return Vector3.zero;
+                }
+            }
+            #endregion
             //If no character input script is attached to this object, return;
             if (characterInput == null)
                 return Vector3.zero;
@@ -285,6 +296,16 @@ namespace CMF
         //Returns 'true' if the player presses the jump key;
         protected virtual bool IsJumpKeyPressed()
         {
+            #region NETWORKING CODES
+            //FOR MIRROR NETWORKING
+            if (gameObject.GetComponent<NetworkIdentity>())
+            {
+                if (!gameObject.GetComponent<PlayerLanExtension>().isLocalPlayer)
+                {
+                    return false;
+                }
+            }
+            #endregion
             //If no character input script is attached to this object, return;
             if (characterInput == null)
                 return false;
@@ -538,6 +559,18 @@ namespace CMF
         }
 
         //Events;
+        public void jumpNow()
+        {
+            OnJumpStart();
+            OnGroundContactLost();
+        }
+
+        public void jump()
+        {
+            GetComponent<TuxAnimations>().jump();
+            OnJumpStart();
+            OnGroundContactLost();
+        }
 
         //This function is called when the player has initiated a jump;
         void OnJumpStart()

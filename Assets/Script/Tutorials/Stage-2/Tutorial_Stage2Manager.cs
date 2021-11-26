@@ -66,18 +66,17 @@ public class Tutorial_Stage2Manager : MonoBehaviour
     {
         DisplayGivenText.GetComponent<TextMeshProUGUI>().text = "";
         CurrentQuestionNumberText.GetComponent<TextMeshProUGUI>().text = "0";
-        QuestionAnsweredCorrect = 0;
     }
 
     public void GenerateGiven(int keyNumber)
     {
         given = new Dictionary<int, string>
         {
-            { 8, "((7-5) + 4) + 2 = 8)" },
-            { 2, " (2 * 3) % 4 = 2"}
+            { 8, "((7-5) + 4) + 2)" },
+            { 0, "(2*3) / (2+1) % 4"}
         };
 
-        int[] keys = {8,2};
+        int[] keys = {8,0};
         KeyTotalAnswer = keys[keyNumber];
         RemoveArithmetic();
 
@@ -159,6 +158,7 @@ public class Tutorial_Stage2Manager : MonoBehaviour
         DisplayGivenText.GetComponent<TextMeshProUGUI>().text = "Given: " + givenString;
         playerOperator.Add(arithmetic);
 
+
         //check if the player collect all the operator
         if (playerOperator.Count == correctOperator.Count)
         {
@@ -183,17 +183,25 @@ public class Tutorial_Stage2Manager : MonoBehaviour
                     //proceed to next Question
                     //GenerateGiven(QuestionAnsweredCorrect);
                     //DisplayGivenText.GetComponent<TextMeshProUGUI>().text = "Great! Run as fast as you can in the finish line!";
+
                     CorrectAnswerFirstGiven.SetActive(true);
                     Debug.Log("Tama ang sagot mo 1 sa proceed tayo sa 2");
+                    nextGiven(1);
+
+
                 }
                 if (QuestionAnsweredCorrect == 2)
                 {
-                    UpdateGivenText(given[1].ToString());
+
                     ///congrats to tutoorial
-                    
+                    CorrectAnswer2ndGiven.SetActive(true);
+                    DisplayGivenText.GetComponent<TextMeshProUGUI>().text = "Cross the finish line!";
+                    Debug.Log("Tama ang sagot mo 2 sa proceed tayo sa FINISH LINE");
+
                 }
                 //ELSE Generate another given (Dont forget to clear playerOperator)
-       
+                playerOperator = new List<string>();
+
             }
             //NOT CORRECT
             else
@@ -205,20 +213,24 @@ public class Tutorial_Stage2Manager : MonoBehaviour
                 if(QuestionAnsweredCorrect == 0)
                 {
                     wrongAnswerFirstGiven.SetActive(true);
-                    
+                    tryAgainMessage(QuestionAnsweredCorrect);
+
                 }
                 else if(QuestionAnsweredCorrect == 1)
                 {
                     wrongAnswer2ndGivenTryAgain.SetActive(true);
+                    tryAgainMessage(QuestionAnsweredCorrect);
                 }
 
-                tryAgainMessage();
+              
             }
 
         }
+
+        CurrentQuestionNumberText.GetComponent<TextMeshProUGUI>().text = "Solved Problems: " + QuestionAnsweredCorrect + "/2";
     }
 
-    public void tryAgainMessage()
+    public void tryAgainMessage(int givenToRepeat)
     {
         //try again canvas
         //set conversation to question dialouge
@@ -227,10 +239,27 @@ public class Tutorial_Stage2Manager : MonoBehaviour
         Debug.Log("Wrong answer Please try Again");
 
         GameDefault();
+        GenerateGiven(givenToRepeat);
         //spawnArithmetic();
 
+    }
+
+
+    public void nextGiven(int next)
+    {
+        //try again canvas
+        //set conversation to question dialouge
+        //set quest again
+        //wrong answer try again pop up
+        Debug.Log("Next problem");
+
+        GameDefault();
+        GenerateGiven(next);
+        //spawnArithmetic();
 
     }
+
+
 
 
 

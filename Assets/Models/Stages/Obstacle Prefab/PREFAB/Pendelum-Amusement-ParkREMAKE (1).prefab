@@ -170,7 +170,7 @@ Transform:
   m_GameObject: {fileID: 5564857318107753673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.0606723, y: 24.2, z: 115.79}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.375, y: 0.375, z: 0.6}
   m_Children:
   - {fileID: 8856581667435969582}
   - {fileID: 8451760366455714688}
@@ -189,9 +189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961fa4ff4b5f6fa448e33eb86dbad1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
-  limit: 75
-  randomStart: 0
+  speed: 2000
+  limit: 125
+  startValue: 1
 --- !u!1 &6689220950580428567
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 5012873215221821185}
   - component: {fileID: 6625110579849494406}
   - component: {fileID: 6534675582547139938}
+  - component: {fileID: 3305254012912310920}
   m_Layer: 0
   m_Name: RotatingObj
   m_TagString: Untagged
@@ -326,10 +327,24 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8784221658981065328}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4f9b3b62200b5134bb2c30750747a446, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2124705421725058983, guid: 9252d49698b40a94fb93be31c7e3a63d, type: 3}
+--- !u!136 &3305254012912310920
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8784221658981065328}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.031857934
+  m_Height: 0.06371588
+  m_Direction: 1
+  m_Center: {x: 0.000000029802322, y: 0, z: -0.00017271382}
