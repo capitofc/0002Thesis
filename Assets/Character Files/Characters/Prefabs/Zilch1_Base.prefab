@@ -19888,6 +19888,7 @@ GameObject:
   - component: {fileID: 2143282363396489889}
   - component: {fileID: 2143282363396489888}
   - component: {fileID: 2143282363396489895}
+  - component: {fileID: 1098016174588906747}
   m_Layer: 0
   m_Name: Zilch1_Base
   m_TagString: Zilch
@@ -20023,6 +20024,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 2143282364583633413}
   skill: {fileID: 2143282363610706547}
+  firstSkillBtnText: {fileID: 0}
+  firstSkillButton: {fileID: 0}
+  ultiSkillBtnText: {fileID: 0}
+  ultiSkillButton: {fileID: 0}
 --- !u!114 &2143282363396489891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20188,6 +20193,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1098016174588906747
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143282363396489894}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d1bdd4e7df48d4a47aac08862f1590e2, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0b605d3b04dee1a44a313159a5c54541, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2143282363566948914
 GameObject:
   m_ObjectHideFlags: 0
@@ -25198,7 +25222,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillDuration: 0
-  pushDistance: 0
   particles:
   - {fileID: 2143282364219043405}
   - {fileID: 2143282364443716444}

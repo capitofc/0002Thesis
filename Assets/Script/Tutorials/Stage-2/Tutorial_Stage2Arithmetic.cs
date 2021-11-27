@@ -48,6 +48,7 @@ public class Tutorial_Stage2Arithmetic : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Add") || other.gameObject.tag.Equals("Sub") || other.gameObject.tag.Equals("Div") || other.gameObject.tag.Equals("Mod") || other.gameObject.tag.Equals("Mul"))
         {
+
             pickUpBtn.SetActive(false);
             value = "";
             arithObj = null;

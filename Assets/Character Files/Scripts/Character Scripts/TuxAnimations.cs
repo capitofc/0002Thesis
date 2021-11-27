@@ -25,7 +25,7 @@ public class TuxAnimations : MonoBehaviour
         // if (GetComponent<PlayerLanExtension>().isLocalPlayer && GetComponent<PlayerLanExtension>().isClient)
         // {
         Vector3 direction = gameObject.GetComponent<AdvancedWalkerController>().GetMovementVelocity().normalized;
-
+            
         if (Input.GetKeyDown(KeyCode.Space))
             jump();
 
