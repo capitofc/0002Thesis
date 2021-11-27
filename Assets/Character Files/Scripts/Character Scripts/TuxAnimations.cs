@@ -14,7 +14,7 @@ public class TuxAnimations : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<AdvancedWalkerController>();
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
         sm = gameObject.GetComponent<SoundManager>();
         mover = gameObject.GetComponent<Mover>();
     }
@@ -22,20 +22,16 @@ public class TuxAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (GetComponent<PlayerLanExtension>().isLocalPlayer && GetComponent<PlayerLanExtension>().isClient)
-        // {
         Vector3 direction = gameObject.GetComponent<AdvancedWalkerController>().GetMovementVelocity().normalized;
 
         if (Input.GetKeyDown(KeyCode.Space))
             jump();
 
         bool isMoving = false;
-        // GetComponent<PlayerLanExtension>().CmdGrounded();
         anim.SetBool("inAir", !mover.IsGrounded());
 
         if (mover.IsGrounded().Equals(true))
         {
-            // GetComponent<PlayerLanExtension>().CmdGrounded();
             anim.SetBool("Grounded", mover.IsGrounded());
             if (direction != Vector3.zero)
             {
@@ -49,51 +45,10 @@ public class TuxAnimations : MonoBehaviour
                 isMoving = false;
             }
 
-            // GetComponent<PlayerLanExtension>().CmdMoving(isMoving);
             anim.SetBool("isMoving", isMoving);
-            // GetComponent<PlayerLanExtension>().CmdSetAir();
             anim.SetBool("inAir", !mover.IsGrounded());
         }
-        // GetComponent<PlayerLanExtension>().CmdGrounded();
         anim.SetBool("Grounded", mover.IsGrounded());
-        // }
-        // else if (GetComponent<PlayerLanExtension>().isLocalPlayer)
-        // {
-        //     Debug.Log("I am here");
-        //     Vector3 direction = gameObject.GetComponent<AdvancedWalkerController>().GetMovementVelocity().normalized;
-
-        //     if (Input.GetKeyDown(KeyCode.Space))
-        //         jump();
-
-        //     bool isMoving = false;
-
-        //     // GetComponent<PlayerLanExtension>().RpcGrounded();
-        //     anim.SetBool("inAir", !mover.IsGrounded());
-
-        //     if (mover.IsGrounded().Equals(true))
-        //     {
-        //         // GetComponent<PlayerLanExtension>().RpcGrounded();
-        //         anim.SetBool("Grounded", mover.IsGrounded());
-        //         if (direction != Vector3.zero)
-        //         {
-        //             isMoving = true;
-        //             if (!sm.adSrc.isPlaying && mover.IsGrounded())
-        //                 sm.PlayMusic(0);
-        //         }
-
-        //         else
-        //         {
-        //             isMoving = false;
-        //         }
-
-        //         // GetComponent<PlayerLanExtension>().RpcMoving(isMoving);
-        //         anim.SetBool("isMoving", isMoving);
-        //         // GetComponent<PlayerLanExtension>().RpcSetAir();
-        //         anim.SetBool("inAir", !mover.IsGrounded());
-        //     }
-        //     // GetComponent<PlayerLanExtension>().RpcGrounded();
-        //     anim.SetBool("Grounded", mover.IsGrounded());
-        // }
     }
 
 

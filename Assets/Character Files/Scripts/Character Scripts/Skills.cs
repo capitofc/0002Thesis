@@ -118,7 +118,7 @@ public class Skills : MonoBehaviour
         skillFX.particles[1].SetActive(true);
         anim.playFly();
 
-        StartCoroutine(skillTime(2f, target, 2, 0));
+        StartCoroutine(skillTime(0, target, 2, 0));
         StartCoroutine(disableParticle(1, 2.5f, skillFX));
     }
 

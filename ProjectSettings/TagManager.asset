@@ -14,6 +14,8 @@ TagManager:
   - UltiPoint
   - SpeedUp
   - CDReset
+  - Tramp
+  - Pipe
   layers:
   - Default
   - TransparentFX

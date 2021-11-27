@@ -4851,6 +4851,7 @@ GameObject:
   - component: {fileID: 6428856780137908730}
   - component: {fileID: 6428856780137908725}
   - component: {fileID: 6428856780137908724}
+  - component: {fileID: 2241226054538452376}
   m_Layer: 0
   m_Name: Maze2_Mascot
   m_TagString: Maze
@@ -4986,6 +4987,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 6428856781918247987}
   skill: {fileID: 6428856780643704451}
+  firstSkillBtnText: {fileID: 0}
+  firstSkillButton: {fileID: 0}
+  ultiSkillBtnText: {fileID: 0}
+  ultiSkillButton: {fileID: 0}
 --- !u!114 &6428856780137908728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5151,6 +5156,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2241226054538452376
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6428856780137908727}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: df7624b21e3969b4fa5365b65d5665f7, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0b605d3b04dee1a44a313159a5c54541, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6428856780168830624
 GameObject:
   m_ObjectHideFlags: 0
@@ -29756,7 +29780,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillDuration: 0
-  pushDistance: 0
   particles:
   - {fileID: 6428856781378470435}
   - {fileID: 6428856780721392768}
@@ -64268,6 +64291,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4414362156791663807, guid: ad6a3c3c10954fe43b5138efb9e6ca5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756001385631667909, guid: ad6a3c3c10954fe43b5138efb9e6ca5f, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

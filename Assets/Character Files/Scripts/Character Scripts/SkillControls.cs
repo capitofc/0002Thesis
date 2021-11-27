@@ -16,15 +16,25 @@ public class SkillControls : MonoBehaviour
 
 
 
-    public Text firstSkillBtnText;
-    public Button firstSkillButton;
+    Text firstSkillBtnText;
+    Button firstSkillButton;
 
-    public Text ultiSkillBtnText;
-    public Button ultiSkillButton;
+    Text ultiSkillBtnText;
+    Button ultiSkillButton;
 
     void Start()
     {
         penguinType = gameObject.tag;
+        loadButtons();
+
+    }
+
+    void loadButtons()
+    {
+        firstSkillButton = GameObject.Find("First Skill").GetComponent<Button>();
+        firstSkillBtnText = GameObject.Find("First Skill").GetComponentInChildren<Text>();
+        ultiSkillButton = GameObject.Find("Ultimate").GetComponent<Button>();
+        ultiSkillBtnText = GameObject.Find("Ultimate").GetComponentInChildren<Text>();
     }
 
     void Update()
@@ -41,7 +51,7 @@ public class SkillControls : MonoBehaviour
 
         if (isUltiPoint == false)
         {
-            // ultiSkillButton.interactable = false;
+            ultiSkillButton.interactable = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
             skill.GetComponent<Skills>().slow(gameObject);
@@ -55,6 +65,11 @@ public class SkillControls : MonoBehaviour
             skill.GetComponent<Skills>().flyPlayer(gameObject);
         else if (Input.GetKeyDown(KeyCode.Alpha6))
             skill.GetComponent<Skills>().flash(gameObject);
+    }
+
+    public void fly(GameObject target)
+    {
+        skill.GetComponent<Skills>().flyPlayer(target);
     }
 
     public void castSkill()
@@ -92,7 +107,7 @@ public class SkillControls : MonoBehaviour
                 skill.GetComponent<Skills>().flash(gameObject);
             }
 
-            //ultiSkillButton.interactable = false;
+            ultiSkillButton.interactable = false;
             setUltiPoint(false);
         }
 
@@ -104,7 +119,7 @@ public class SkillControls : MonoBehaviour
     void startCooldown()
     {
         isCooldown = true;
-        //firstSkillButton.interactable = false;
+        firstSkillButton.interactable = false;
         StartCoroutine(cooldown());
     }
 
@@ -115,20 +130,25 @@ public class SkillControls : MonoBehaviour
             skillCooldown--;
             if (skillCooldown == 0)
             {
-                StopAllCoroutines();
-                isCooldown = false;
-                // firstSkillBtnText.text = "THROW SNOW BALL!";
-                //firstSkillButton.interactable = true;
-                skillCooldown = 5f;
+                firstSkillCDDone();
             }
             else if (skillCooldown >= 1)
             {
-                //updateButtonCDTxt();
+                updateButtonCDTxt();
                 displayCD(skillCooldown);
             }
 
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    void firstSkillCDDone()
+    {
+        StopAllCoroutines();
+        isCooldown = false;
+        firstSkillBtnText.text = "THROW SNOW BALL!";
+        firstSkillButton.interactable = true;
+        skillCooldown = 5f;
     }
 
     private void updateButtonCDTxt()
@@ -147,8 +167,8 @@ public class SkillControls : MonoBehaviour
         StopAllCoroutines();
         skillCooldown = 5f;
         isCooldown = false;
-        // firstSkillBtnText.text = "THROW SNOW BALL!";
-        // firstSkillButton.interactable = true;
+        firstSkillBtnText.text = "THROW SNOW BALL!";
+        firstSkillButton.interactable = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -160,14 +180,14 @@ public class SkillControls : MonoBehaviour
         else if (collision.gameObject.tag.Equals("UltiPoint"))
         {
             isUltiPoint = true;
-            // ultiSkillButton.interactable = true;
+            ultiSkillButton.interactable = true;
         }
     }
 
     public void resetCD()
     {
         isCooldown = false;
-        StopAllCoroutines();
+        firstSkillCDDone();
     }
 
     public void setUltiPoint(bool val)

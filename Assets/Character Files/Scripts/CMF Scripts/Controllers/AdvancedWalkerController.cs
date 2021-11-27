@@ -157,6 +157,9 @@ namespace CMF
             if (Input.GetKeyDown(KeyCode.B))
                 joystick.SetActive(true);
 
+            if (Input.GetKeyDown(KeyCode.P))
+                pickUp();
+
         }
 
 
