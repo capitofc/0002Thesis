@@ -11,7 +11,13 @@ public static class Stage3GivenHandler
     {
         TrueGiven = new List<string>
         {
-            "(T && T) || F",
+            "if(True && False)" +
+            "\n\t     print(True || False)" +
+            "Else if(False || True)" +
+            "\n\t     print(False && True)",
+
+
+
             "(T || F) || (!T && T)",
             "((T && T) && (F || T)) && T",
             "((F && T) || T) && T",

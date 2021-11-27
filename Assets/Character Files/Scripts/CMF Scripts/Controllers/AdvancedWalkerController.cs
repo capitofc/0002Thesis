@@ -136,7 +136,7 @@ namespace CMF
             if (mover.IsGrounded())
             {
                 GetComponent<TuxAnimations>().pickUp();
-                StartCoroutine(stopPlayer());
+               // StartCoroutine(stopPlayer());
             }
         }
 

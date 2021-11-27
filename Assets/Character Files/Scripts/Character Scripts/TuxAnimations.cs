@@ -23,7 +23,7 @@ public class TuxAnimations : MonoBehaviour
     void Update()
     {
         Vector3 direction = gameObject.GetComponent<AdvancedWalkerController>().GetMovementVelocity().normalized;
-
+            
         if (Input.GetKeyDown(KeyCode.Space))
             jump();
 
