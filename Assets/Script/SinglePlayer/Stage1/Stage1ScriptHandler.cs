@@ -19,6 +19,8 @@ public class Stage1ScriptHandler : MonoBehaviour
     [SerializeField] GameObject[] QuestionStat;
     [SerializeField] GameObject TimerText;
     [SerializeField] GameObject SolveTimer;
+    [SerializeField] public GameObject PlayerUi;
+
 
 
     //Question Info
@@ -27,7 +29,7 @@ public class Stage1ScriptHandler : MonoBehaviour
     string correctAnswer = "";
 
 
-    private void Start()
+    public void Start()
     {
         //Player = Instantiate(ModelPrefab[Database.instance.UsedCharacter], spawnPoint.transform);
         //Disable player movement script
@@ -35,14 +37,8 @@ public class Stage1ScriptHandler : MonoBehaviour
         //FOR TESTING SCRIPT
         Player = Instantiate(Player, spawnPoint.transform);
         GameDefault();
-    }
+        StartGame();
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartGame();
-        }
     }
 
     public void NewMethod()
@@ -96,9 +92,18 @@ public class Stage1ScriptHandler : MonoBehaviour
         }
     }
 
+    public void SetTvTimer(string time)
+    {
+        for (int i = 0; i < TvScreen.Length; i++)
+        {
+            TvScreen[i].GetComponent<TextMeshPro>().text = time;
+        }
+    }
+
     IEnumerator InitializeTimer()
     {
         ResetCoolDown = 4;
+
         while(int.Parse(TimerText.GetComponent<TextMeshProUGUI>().text) > 0)
         {
             if (TimerText.GetComponent<TextMeshProUGUI>().text.Equals("1"))
@@ -108,7 +113,7 @@ public class Stage1ScriptHandler : MonoBehaviour
                 //Disable timer text
                 TimerText.SetActive(false);
                 //StartPlayerMovemtn
-                SetCharacterProperty(true);
+                //SetCharacterProperty(true);
                 //Start Generating the given
                 SetGiven();
                 //Start the timer to solve the given~
@@ -144,7 +149,7 @@ public class Stage1ScriptHandler : MonoBehaviour
                 QuestionCount++;
                 Debug.Log($"{QuestionCount} Question.");
                 //Disable Player
-                SetCharacterProperty(false);
+                //SetCharacterProperty(false);
                 //Disable Solve Timer
                 SolveTimer.SetActive(false);
                 //Timer for reseting the game
@@ -188,7 +193,7 @@ public class Stage1ScriptHandler : MonoBehaviour
     public void GameDefault()
     {
         //Disable player animation, movement, skills
-        SetCharacterProperty(false);
+        //SetCharacterProperty(false);
 
         //Reset Timer Text
         TimerText.GetComponent<TextMeshProUGUI>().text = 4 +"";

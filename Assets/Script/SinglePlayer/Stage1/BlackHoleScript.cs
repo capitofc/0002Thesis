@@ -15,7 +15,7 @@ public class BlackHoleScript : MonoBehaviour
         Debug.Log($"Collided : {collision.gameObject.tag}");
         if (collision.gameObject.tag.Equals("Maze") || collision.gameObject.tag.Equals("Trix") || collision.gameObject.tag.Equals("Zilch"))
         {
-            Stage1Handler.GetComponent<Stage1ScriptHandler>().GameDefault();
+            Stage1Handler.GetComponent<Stage1ScriptHandler>().PlayerUi.SetActive(false);
             DeadUi.SetActive(true);
         }
     }
@@ -25,7 +25,7 @@ public class BlackHoleScript : MonoBehaviour
         Debug.Log($"Collided : {other.gameObject.tag}");
         if (other.gameObject.tag.Equals("Maze") || other.gameObject.tag.Equals("Trix") || other.gameObject.tag.Equals("Zilch"))
         {
-            Stage1Handler.GetComponent<Stage1ScriptHandler>().GameDefault();
+            Stage1Handler.GetComponent<Stage1ScriptHandler>().PlayerUi.SetActive(false);
             DeadUi.SetActive(true);
         }
     }
