@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Multiplayer/LAN/MasterLanLobby.unity
     guid: 203976065d7a1d24bbdbe0ccd51ef0c3
+  - enabled: 1
+    path: Assets/Scene/Multiplayer/LAN/Stage1LanScene.unity
+    guid: b093c6571d5a732428d48e96e713382e
+  - enabled: 1
+    path: Assets/Scene/Multiplayer/LAN/Stage2LanScene.unity
+    guid: 6cb8d15d85659a149bdfb63a1085c81f
+  - enabled: 1
+    path: Assets/Scene/Multiplayer/LAN/Stage3LanScene.unity
+    guid: 54400251457e0334babe5ae17399f10c
   m_configObjects: {}
