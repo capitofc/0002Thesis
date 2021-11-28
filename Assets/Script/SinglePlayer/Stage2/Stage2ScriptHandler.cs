@@ -19,13 +19,18 @@ public class Stage2ScriptHandler : MonoBehaviour
     [SerializeField] GameObject[] pickupPoints;
 
     [Header("Prefabs")]
-    [SerializeField] GameObject arithmeticPrefab;
+    [SerializeField] GameObject [] arithmeticPrefab;
 
     [Header("Player UI")]
     [SerializeField] GameObject DisplayGivenText;
     [SerializeField] GameObject GameTimerText;
     [SerializeField] GameObject ReadyTimerText;
     [SerializeField] GameObject CurrentQuestionNumberText;
+
+    [SerializeField] public GameObject Given_timer_AnswerCtr;
+    [SerializeField] public GameObject PlayerBtnHandler;
+    [SerializeField] public GameObject joyStick;
+    [SerializeField] public GameObject pickupButton;
 
 
     Dictionary<int, string> given = new Dictionary<int, string>();
@@ -41,26 +46,29 @@ public class Stage2ScriptHandler : MonoBehaviour
     void Start()
     {
         //For testing
+       
         Player = Instantiate(Player, CheckPoints[0].transform);
-        GameDefault();
-    }
-
-    public void kemeruith()
-    {
-
+        Player.GetComponent<Arithmetic_Character_Script>().setPickup(pickupButton);
+        PlayerBtnHandler.GetComponent<ButtonsHandler>().setPlayer(Player);
+        StartGame();
     }
 
     public void StartGame()
     {
+
         //Initialize GameDefault()
         GameDefault();
+        
+      
+        PlayerUI(false);
         //Initialize Ready timer -- Coroutine(ReadyTimer())
         StartCoroutine(ReadyTimer());
+ 
     }
 
     IEnumerator ReadyTimer()
     {
-        ReadyTimerText.SetActive(true);
+       ReadyTimerText.SetActive(true);
         while (int.Parse(ReadyTimerText.GetComponent<TextMeshProUGUI>().text) > 0)
         {
             if (ReadyTimerText.GetComponent<TextMeshProUGUI>().text.Equals("1"))
@@ -70,9 +78,14 @@ public class Stage2ScriptHandler : MonoBehaviour
                 //Initalize Game Timer -- Coroutine(GameTimer())
                 StartCoroutine(GameTimer());
                 //Generate Given -- GenerateGiven()
+                PlayerUI(false);
                 GenerateGiven();
                 //Spawn arithmetic -- spawnArithmetic()
                 spawnArithmetic();
+
+
+            
+          
             }
             int num = int.Parse(ReadyTimerText.GetComponent<TextMeshProUGUI>().text);
             num--;
@@ -83,9 +96,9 @@ public class Stage2ScriptHandler : MonoBehaviour
 
     IEnumerator GameTimer()
     {
-        GameTimerText.SetActive(true);
-        DisplayGivenText.SetActive(true);
-        CurrentQuestionNumberText.SetActive(true);
+       // GameTimerText.SetActive(true);
+        //DisplayGivenText.SetActive(true);
+       // CurrentQuestionNumberText.SetActive(true);
         while (int.Parse(GameTimerText.GetComponent<TextMeshProUGUI>().text) > 0)
         {
             if (GameTimerText.GetComponent<TextMeshProUGUI>().text.Equals("1"))
@@ -105,7 +118,7 @@ public class Stage2ScriptHandler : MonoBehaviour
 
     public void GameDefault()
     {
-        DisplayPlayerUi(false);
+        //DisplayPlayerUi(false);
         ReadyTimerText.GetComponent<TextMeshProUGUI>().text = "4";
         GameTimerText.GetComponent<TextMeshProUGUI>().text = "61";
         DisplayGivenText.GetComponent<TextMeshProUGUI>().text = "";
@@ -120,7 +133,12 @@ public class Stage2ScriptHandler : MonoBehaviour
         ReadyTimerText.SetActive(status);
         CurrentQuestionNumberText.SetActive(status);
     }
-
+    
+    public void PlayerUI(bool stat)
+    {
+        Given_timer_AnswerCtr.SetActive(stat);
+        PlayerBtnHandler.SetActive(stat);
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -183,11 +201,21 @@ public class Stage2ScriptHandler : MonoBehaviour
             }
         }
         givenString += "=" + KeyTotalAnswer;
+
+       
         DisplayGivenText.GetComponent<TextMeshProUGUI>().text = givenString;
+        PlayerUI(false);
+        Invoke(nameof(setUi), 0.01f);
+
         Debug.Log($"Given : {givenString}");
     }
 
-    public void spawnArithmetic()
+    void setUi()
+    {
+        PlayerUI(true);
+    }
+
+    /*public void spawnArithmetic()
     {
         List<GameObject> arithmeticSpawnPointList = new List<GameObject>();
         //Add all the spawn point
@@ -203,9 +231,29 @@ public class Stage2ScriptHandler : MonoBehaviour
             pref.transform.position = arithmeticSpawnPointList[ran].transform.position;
             arithmeticSpawnPointList.Remove(arithmeticSpawnPointList[ran]);
         }
+    }*/
+
+    public void spawnArithmetic()
+    {
+        List<GameObject> arithmeticSpawnPointList = new List<GameObject>();
+        //Add all the spawn point
+        for (int i = 0; i < pickupPoints.Length; i++)
+        {
+            arithmeticSpawnPointList.Add(pickupPoints[i]);
+        }
+
+        for (int i = 0; i < 12; i++)
+        {
+            //int ran = Random.Range(0, arithmeticSpawnPointList.Count);
+
+            int arithmeticRan = Random.Range(0, arithmeticPrefab.Length - 1);
+            GameObject pref = Instantiate(arithmeticPrefab[arithmeticRan], pickupPointsParent.transform);
+            pref.transform.position = arithmeticSpawnPointList[i].transform.position;
+            arithmeticSpawnPointList.Remove(arithmeticSpawnPointList[i]);
+        }
     }
 
-    
+
 
     public void UpdateGivenText(string arithmetic)
     {

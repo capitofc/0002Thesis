@@ -79,11 +79,16 @@ namespace CMF
         [Tooltip("Optional camera transform used for calculating movement direction. If assigned, character movement will take camera view into account.")]
         public Transform cameraTransform;
 
-        //Get references to all necessary components;
-        void Awake()
+        private void OnEnable()
         {
             joystick = GameObject.Find("Joystick");
             myJs = joystick.GetComponent<Joystick>();
+        }
+
+        //Get references to all necessary components;
+        void Awake()
+        {
+           
             mover = GetComponent<Mover>();
             tr = transform;
             characterInput = GetComponent<CharacterInput>();
@@ -270,8 +275,7 @@ namespace CMF
                 _velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * characterInput.GetHorizontalMovementInput();
                 _velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * characterInput.GetVerticalMovementInput();
 
-                _velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * myJs.GetHorizontal();
-                _velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * myJs.GetVertical();
+                 _velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * myJs.GetVertical();
             }
 
             //If necessary, clamp movement vector to magnitude of 1f;
