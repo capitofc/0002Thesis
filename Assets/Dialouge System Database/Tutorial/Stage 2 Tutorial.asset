@@ -1218,8 +1218,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 654.08154}
-    canvasZoom: 0.8200004
+    canvasScrollPosition: {x: 0, y: 438.6555}
+    canvasZoom: 0.58000076
   - id: 2
     fields:
     - title: Title
@@ -2005,8 +2005,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 245.24573}
-    canvasZoom: 0.7000003
+    canvasScrollPosition: {x: 0, y: 55.226868}
+    canvasZoom: 0.6100004
   - id: 3
     fields:
     - title: Title
@@ -2951,8 +2951,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 101.56244, y: 491.29614}
-    canvasZoom: 0.6400004
+    canvasScrollPosition: {x: 0, y: 246.14557}
+    canvasZoom: 0.58000046
   - id: 4
     fields:
     - title: Title
@@ -4286,8 +4286,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 48.799835, y: 41.859398}
-    canvasZoom: 0.9100001
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.5500004
   syncInfo:
     syncActors: 0
     syncItems: 0

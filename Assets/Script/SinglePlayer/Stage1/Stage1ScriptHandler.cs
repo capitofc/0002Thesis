@@ -26,6 +26,10 @@ public class Stage1ScriptHandler : MonoBehaviour
     [SerializeField] public GameObject PlayerUi;
     [SerializeField] GameObject endUI;
     [SerializeField] Text endText;
+    [SerializeField] GameObject correctAnswerCounter;
+    [SerializeField] GameObject currentQuestion;
+    [SerializeField] public GameObject playerJoystick;
+    [SerializeField] public GameObject buttons;
 
 
 
@@ -41,7 +45,11 @@ public class Stage1ScriptHandler : MonoBehaviour
         //Disable player movement script
 
         //FOR TESTING SCRIPT
+
+        playerJoystick.SetActive(true);
         Player = Instantiate(Player, spawnPoint.transform);
+        playerJoystick.SetActive(false);
+
         isDead = false;
         points = 0;
         GameDefault();
@@ -69,9 +77,13 @@ public class Stage1ScriptHandler : MonoBehaviour
 
     public void StartGame()
     {
-        if (QuestionCount <= 3)
+
+
+        if (QuestionCount <= 10)
         {
             PlayerUi.SetActive(true);
+            playerJoystick.SetActive(false);
+            buttons.SetActive(false);
             StopAllCoroutines();
             Debug.Log("Initialized StartGame()");
             TimerText.SetActive(true);
@@ -135,6 +147,9 @@ public class Stage1ScriptHandler : MonoBehaviour
                 StopCoroutine(InitializeTimer());
                 //Disable timer text
                 TimerText.SetActive(false);
+                PlayerUi.SetActive(true);
+                playerJoystick.SetActive(true);
+                buttons.SetActive(true);
                 //StartPlayerMovemtn
                 //SetCharacterProperty(true);
                 //Start Generating the given
@@ -187,7 +202,7 @@ public class Stage1ScriptHandler : MonoBehaviour
 
     IEnumerator givePoints()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         if (!isDead)
             addPlayerExp();
 
@@ -198,7 +213,7 @@ public class Stage1ScriptHandler : MonoBehaviour
     {
         while (ResetCoolDown > 0)
         {
-            if (ResetCoolDown == 1)
+            if (ResetCoolDown == 1 && !isDead)
             {
                 StopCoroutine(ResetGameTimer());
                 //Reset the game
@@ -220,17 +235,20 @@ public class Stage1ScriptHandler : MonoBehaviour
     public void ResetPosition()
     {
         Player.transform.position = spawnPoint.transform.position;
-        isDead = false;
     }
 
     public void GameDefault()
     {
-
-        if (QuestionCount <= 3)
+        currentQuestion.GetComponent<TextMeshProUGUI>().text = QuestionCount.ToString() + "/10";
+        if (QuestionCount <= 10)
         {
+            isDead = false;
             gameEnded = false;
             //Disable player animation, movement, skills
             SetCharacterProperty(true);
+            playerJoystick.SetActive(false);
+            buttons.SetActive(true);
+            PlayerUi.SetActive(false);
 
             //Reset Timer Text
             TimerText.GetComponent<TextMeshProUGUI>().text = 4 + "";
@@ -269,6 +287,7 @@ public class Stage1ScriptHandler : MonoBehaviour
     {
         Debug.Log("Point Added!");
         points++;
+        correctAnswerCounter.GetComponent<TextMeshProUGUI>().text = points.ToString();
         // GameObject.Find("Opening_Game_Script").GetComponent<Database>().playerCurrentExp += 2;
         // GameObject.Find("Opening_Game_Script").GetComponent<PlayerExpCalculator>().UpdatePlayerLevel();
     }

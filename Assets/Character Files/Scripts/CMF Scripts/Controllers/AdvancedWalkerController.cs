@@ -82,8 +82,7 @@ namespace CMF
         //Get references to all necessary components;
         void Awake()
         {
-            joystick = GameObject.Find("Joystick");
-            myJs = joystick.GetComponent<Joystick>();
+
             mover = GetComponent<Mover>();
             tr = transform;
             characterInput = GetComponent<CharacterInput>();
@@ -96,6 +95,11 @@ namespace CMF
             Setup();
         }
 
+        private void OnEnable()
+        {
+            joystick = GameObject.Find("Joystick");
+            myJs = joystick.GetComponent<Joystick>();
+        }
         //This function is called right after Awake(); It can be overridden by inheriting scripts;
         protected virtual void Setup()
         {
@@ -136,7 +140,7 @@ namespace CMF
             if (mover.IsGrounded())
             {
                 GetComponent<TuxAnimations>().pickUp();
-               // StartCoroutine(stopPlayer());
+                // StartCoroutine(stopPlayer());
             }
         }
 

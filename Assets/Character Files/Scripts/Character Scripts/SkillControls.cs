@@ -22,7 +22,7 @@ public class SkillControls : MonoBehaviour
     Text ultiSkillBtnText;
     Button ultiSkillButton;
 
-    void Start()
+    void Awake()
     {
         penguinType = gameObject.tag;
         loadButtons();
