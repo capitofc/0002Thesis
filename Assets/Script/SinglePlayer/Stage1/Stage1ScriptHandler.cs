@@ -31,10 +31,16 @@ public class Stage1ScriptHandler : MonoBehaviour
     [SerializeField] public GameObject playerJoystick;
     [SerializeField] public GameObject buttons;
 
+    [SerializeField] TextMeshProUGUI firstSkillBtnText;
+    [SerializeField] Button firstSkillButton;
+
+    [SerializeField] TextMeshProUGUI ultiSkillBtnText;
+    [SerializeField] Button ultiSkillButton;
+
 
 
     //Question Info
-    int QuestionCount = 1;
+    int QuestionCount = 8;
     int ResetCoolDown = 4;
     string correctAnswer = "";
 
@@ -45,10 +51,8 @@ public class Stage1ScriptHandler : MonoBehaviour
         //Disable player movement script
 
         //FOR TESTING SCRIPT
-
-        playerJoystick.SetActive(true);
         Player = Instantiate(Player, spawnPoint.transform);
-        playerJoystick.SetActive(false);
+
 
         isDead = false;
         points = 0;
@@ -77,8 +81,6 @@ public class Stage1ScriptHandler : MonoBehaviour
 
     public void StartGame()
     {
-
-
         if (QuestionCount <= 10)
         {
             PlayerUi.SetActive(true);
@@ -150,6 +152,8 @@ public class Stage1ScriptHandler : MonoBehaviour
                 PlayerUi.SetActive(true);
                 playerJoystick.SetActive(true);
                 buttons.SetActive(true);
+
+                loadButtons();
                 //StartPlayerMovemtn
                 //SetCharacterProperty(true);
                 //Start Generating the given
@@ -274,10 +278,12 @@ public class Stage1ScriptHandler : MonoBehaviour
         else
         {
             Debug.Log("Game End");
-            endText.text = "Congratulations! \nYou got " + points + " correct \nanswers!";
+            endText.text = "Congratulations! \nYou got " + points + " correct answers!\nExp. Points Gained : " + points * 2;
             PlayerUi.SetActive(false);
             endUI.SetActive(true);
             gameEnded = true;
+            // GameObject.Find("Opening_Game_Script").GetComponent<Database>().playerCurrentExp += 2 * points;
+            // GameObject.Find("Opening_Game_Script").GetComponent<PlayerExpCalculator>().UpdatePlayerLevel();
         }
 
 
@@ -288,12 +294,29 @@ public class Stage1ScriptHandler : MonoBehaviour
         Debug.Log("Point Added!");
         points++;
         correctAnswerCounter.GetComponent<TextMeshProUGUI>().text = points.ToString();
-        // GameObject.Find("Opening_Game_Script").GetComponent<Database>().playerCurrentExp += 2;
-        // GameObject.Find("Opening_Game_Script").GetComponent<PlayerExpCalculator>().UpdatePlayerLevel();
     }
 
     public bool isGameEnded()
     {
         return gameEnded;
+    }
+
+    public void loadButtons()
+    {
+        Player.GetComponent<SkillControls>().loadButtons(firstSkillButton, ultiSkillButton, firstSkillBtnText, ultiSkillBtnText);
+        buttons.GetComponent<ButtonsHandler>().setPlayer(Player);
+        // firstSkillButton.gameObject.SetActive(false);
+        ultiSkillButton.interactable = false;
+
+    }
+
+    public GameObject getPlayer()
+    {
+        return Player;
+    }
+
+    void loadSkillButtons()
+    {
+        Player.GetComponent<SkillControls>().loadButtons(firstSkillButton, ultiSkillButton, firstSkillBtnText, ultiSkillBtnText);
     }
 }

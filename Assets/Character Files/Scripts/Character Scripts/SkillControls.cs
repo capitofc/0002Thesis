@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SkillControls : MonoBehaviour
 {
@@ -16,25 +17,24 @@ public class SkillControls : MonoBehaviour
 
 
 
-    Text firstSkillBtnText;
+    TextMeshProUGUI firstSkillBtnText;
     Button firstSkillButton;
 
-    Text ultiSkillBtnText;
+    TextMeshProUGUI ultiSkillBtnText;
     Button ultiSkillButton;
 
     void Awake()
     {
         penguinType = gameObject.tag;
-        loadButtons();
 
     }
 
-    void loadButtons()
+    public void loadButtons(Button fs, Button us, TextMeshProUGUI fst, TextMeshProUGUI ust)
     {
-        firstSkillButton = GameObject.Find("First Skill").GetComponent<Button>();
-        firstSkillBtnText = GameObject.Find("First Skill").GetComponentInChildren<Text>();
-        ultiSkillButton = GameObject.Find("Ultimate").GetComponent<Button>();
-        ultiSkillBtnText = GameObject.Find("Ultimate").GetComponentInChildren<Text>();
+        firstSkillButton = fs;
+        firstSkillBtnText = fst;
+        ultiSkillButton = us;
+        ultiSkillBtnText = ust;
     }
 
     void Update()
@@ -49,10 +49,6 @@ public class SkillControls : MonoBehaviour
             castUltimate();
         }
 
-        if (isUltiPoint == false)
-        {
-            ultiSkillButton.interactable = false;
-        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
             skill.GetComponent<Skills>().slow(gameObject);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -193,6 +189,7 @@ public class SkillControls : MonoBehaviour
     public void setUltiPoint(bool val)
     {
         isUltiPoint = val;
+        ultiSkillButton.interactable = val;
     }
     public Skills GetSkills()
     {
