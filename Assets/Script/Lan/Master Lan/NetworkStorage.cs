@@ -12,6 +12,13 @@ public class NetworkStorage : NetworkBehaviour
     [SerializeField] GameObject PlayerTotalTxt;
     [SerializeField] GameObject PlayerReadyButton;
 
+    [Header("Prefabs")]
+    [SerializeField] public GameObject PowerUpUlti;
+    [SerializeField] public GameObject PowerUpSpeed;
+    [SerializeField] public GameObject PowerUpResetCd;
+
+
+    [Header("Variables")]
     private string[] mapNames = {"Stage1", "Stage2", "Stage3"};
     
     [SyncVar]
@@ -30,7 +37,6 @@ public class NetworkStorage : NetworkBehaviour
 
     [SyncVar(hook =nameof(PositionPostHook))]
     public int PositionPos = 0;
-
 
     public void PositionPostHook(int oldValue, int newValue)
     {

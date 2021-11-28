@@ -21,6 +21,9 @@ public class LanStage1Handler : NetworkBehaviour
     [SerializeField] List<GameObject> GivenText;
     [SerializeField] List<GameObject> platforms;
 
+    [Header("Prefab")]
+    [SerializeField] List<GameObject> PowerUpsGo;
+
     [SyncVar(hook =nameof(ReadyTimerHook))]
     public int ReadyTimerInt = 4;
 
@@ -39,6 +42,12 @@ public class LanStage1Handler : NetworkBehaviour
     [SyncVar]
     public int ResetCooldownInt = 5;
 
+    [SyncVar]
+    public int ToAnswerTimerBaseInt = 11;
+
+    [SyncVar]
+    public bool SpawnedPowerUpBool = false;
+
     private void Start()
     {
         DontDestroyOnLoad(this);
@@ -53,7 +62,7 @@ public class LanStage1Handler : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
-            CmdToLessAlivePlayer();
+            CmdInstantiatePowerUp();
         }
     }
 
@@ -67,20 +76,37 @@ public class LanStage1Handler : NetworkBehaviour
 
     public void GetAllText()
     {
-        GameObject TvStage1 = GameObject.Find("TvText");
-        for(int i = 0; i < TvStage1.GetComponent<TvTextHandler>().TvText.Length; i++)
+        GameObject GoStore = GameObject.Find("S1GoStorage");
+        for(int i = 0; i < GoStore.GetComponent<S1GoStoreScript>().TvText.Length; i++)
         {
-            GivenText.Add(TvStage1.GetComponent<TvTextHandler>().TvText[i]);
+            GivenText.Add(GoStore.GetComponent<S1GoStoreScript>().TvText[i]);
         }
     }
 
     public void GetAllPlatforms()
     {
-        GameObject TvStage1 = GameObject.Find("TvText");
-        for (int i = 0; i < TvStage1.GetComponent<TvTextHandler>().Platforms.Length; i++)
+        GameObject GoStore = GameObject.Find("S1GoStorage");
+        for (int i = 0; i < GoStore.GetComponent<S1GoStoreScript>().Platforms.Length; i++)
         {
-            platforms.Add(TvStage1.GetComponent<TvTextHandler>().Platforms[i]);
+            platforms.Add(GoStore.GetComponent<S1GoStoreScript>().Platforms[i]);
         }
+    }
+
+    public void GetAllPowerUps()
+    {
+        NetworkStorage NetworkStore = GameObject.Find("NetworkStorage").GetComponent<NetworkStorage>();
+        PowerUpsGo.Add(NetworkStore.PowerUpResetCd);
+        PowerUpsGo.Add(NetworkStore.PowerUpSpeed);
+        PowerUpsGo.Add(NetworkStore.PowerUpUlti);
+    }
+
+    public float[] GetRandomPowerUpSpawnPoint()
+    {
+        float x = Random.Range(-1f, 13f);
+        float y = 0.2f;
+        float z = Random.Range(-7f, 4f); ;
+        float[] pos = { x, y, z };
+        return pos;
     }
 
     public void ResetAllPlatforms()
@@ -126,20 +152,60 @@ public class LanStage1Handler : NetworkBehaviour
         
     }
 
+    public bool CanContinue()
+    {
+        bool status = true;
+        if (AlivePlayer == 0)
+        {
+            //The Game is draw, Proceed to Lobby
+            status = false;
+        }
+        else if (AlivePlayer == 1)
+        {
+            //Declare Winner, Proceed to Lobby
+            Debug.Log("Champion!");
+            status = false;
+        }
+        else if (AlivePlayer == 2)
+        {
+            Debug.Log($"Base Int = {ToAnswerTimerBaseInt} :::: is equals to 3? - {ToAnswerTimerBaseInt == 3}");
+            //Increase difficulty
+            if (ToAnswerTimerBaseInt == 3)
+            {
+                Debug.Log("Game ended");
+                status = false;
+                //Stop the game and proceed to lobby.
+            }
+            else
+            {
+                CmdDecToTimerBase();
+            }
+        }
+        return status;
+    }
+
     IEnumerator StartReadyTimer()
     {
-        RpcShowReadyTimerText(true);
-        while(ReadyTimerInt > 0)
+        if (CanContinue())
         {
-            if(ReadyTimerInt == 1)
+            RpcShowReadyTimerText(true);
+            while (ReadyTimerInt > 0)
             {
-                StopAllCoroutines();
-                RpcShowReadyTimerText(false);
-                //Start Timer To answer and generate given there
-                StartCoroutine(StartToAnswerTimer());
+                if (ReadyTimerInt == 1)
+                {
+                    StopAllCoroutines();
+                    RpcShowReadyTimerText(false);
+                    //Start Timer To answer and generate given there
+                    if(SpawnedPowerUpBool == false)
+                    {
+                        CmdSetSpawnedBool(true);
+                        Invoke(nameof(CmdInstantiatePowerUp), Random.Range(5, 15));
+                    }
+                    StartCoroutine(StartToAnswerTimer());
+                }
+                CmdDecReadyTimerInt();
+                yield return new WaitForSeconds(1f);
             }
-            CmdDecReadyTimerInt();
-            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -149,7 +215,7 @@ public class LanStage1Handler : NetworkBehaviour
         CmdChangeGiven();
         while(ToAnswerTimerInt > 0)
         {
-            if(ToAnswerTimerInt == 1)
+            if (ToAnswerTimerInt == 1)
             {
                 StopAllCoroutines();
                 RpcShowToAnswerText(false);
@@ -180,6 +246,30 @@ public class LanStage1Handler : NetworkBehaviour
 
 
     #region CMD Functions
+    [Command(requiresAuthority = false)]
+    public void CmdSetSpawnedBool(bool status)
+    {
+        SpawnedPowerUpBool = status;
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdInstantiatePowerUp()
+    {
+        RpcSpawnPowerUp();
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdDecToTimerBase()
+    {
+        ToAnswerTimerBaseInt--;
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdSetToAnswerInt(int secs)
+    {
+        ToAnswerTimerInt = secs;
+    }
+
     [Command(requiresAuthority = false)]
     public void CmdDecCooldownInt()
     {
@@ -275,7 +365,18 @@ public class LanStage1Handler : NetworkBehaviour
     #endregion
 
     #region RPC FUNCTIONS
-    
+    [ClientRpc]
+    public void RpcSpawnPowerUp()
+    {
+        if (Player.GetComponent<PlayerLanExtension>().isServer)
+        {
+            int rand = Random.Range(0, PowerUpsGo.Count);
+            float[] pos = GetRandomPowerUpSpawnPoint();
+            GameObject Go = Instantiate(PowerUpsGo[rand], new Vector3(pos[0], pos[1], pos[2]), Quaternion.identity);
+            NetworkServer.Spawn(Go);
+        }
+    }
+
     [ClientRpc]
     public void RpcRunDefaults()
     {
@@ -302,10 +403,8 @@ public class LanStage1Handler : NetworkBehaviour
     [ClientRpc]
     void RpcSetWrongAnswer()
     {
-        Debug.Log("I am here");
         for(int i = 0; i < platforms.Count; i++)
         {
-            Debug.Log($"Platform - {platforms[i].GetComponent<PlatformScript>().GetValue().Equals(CorrectAnswerStr)}");
             if (!platforms[i].GetComponent<PlatformScript>().GetValue().Equals(CorrectAnswerStr))
             {
                 platforms[i].SetActive(false);

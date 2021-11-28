@@ -11,8 +11,15 @@ public class PlayerLanExtension : NetworkBehaviour
     SyncList<GameObject> players;
     public int posIndex = -1;
 
+    [SerializeField] public GameObject ballSpointPoint;
+    Skills skillFX;
+    GameObject[] particles;
+
+
     Animator anim;
     Mover mover;
+    float animSpeed;
+    float movementSpeed;
 
 
     private void Start()
@@ -38,7 +45,16 @@ public class PlayerLanExtension : NetworkBehaviour
             mover = GetComponent<Mover>();
             CmdAddToPlayerList(gameObject);
             StageLocalPlayerReference();
+            Invoke(nameof(FindThrower), 2f);
+            skillFX = gameObject.GetComponentInChildren<Skills>();
+            particles = skillFX.particles;
         }
+    }
+
+
+    void FindThrower()
+    {
+        GameObject.Find("NetworkStorage").GetComponent<LanThrower>().player = gameObject;
     }
 
     void StageLocalPlayerReference()
@@ -50,6 +66,7 @@ public class PlayerLanExtension : NetworkBehaviour
             GameObject.Find("Stage1Handler").GetComponent<LanStage1Handler>().GetAllText();
             GameObject.Find("Stage1Handler").GetComponent<LanStage1Handler>().GetAllPlatforms();
             GameObject.Find("Stage1Handler").GetComponent<LanStage1Handler>().CmdToAddAlivePlayer();
+            GameObject.Find("Stage1Handler").GetComponent<LanStage1Handler>().GetAllPowerUps();
             posIndex = GameObject.Find("NetworkStorage").GetComponent<NetworkStorage>().PositionPos;
             CmdAddPositionPos();
         }
@@ -92,13 +109,11 @@ public class PlayerLanExtension : NetworkBehaviour
         GameObject.Find("NetworkStorage").GetComponent<NetworkStorage>().playerLan.Add(me);
     }
 
-
     [ClientRpc]
     public void SetMyPosition(GameObject pos)
     {
         gameObject.transform.position = pos.transform.position;
     }
-
 
     [Command]
     public void ResetMyPosition(GameObject pos)
@@ -106,4 +121,199 @@ public class PlayerLanExtension : NetworkBehaviour
         gameObject.transform.position = pos.transform.position;
     }
 
+    [Command]
+    public void CmdSpeedUp()
+    {
+        Debug.Log("I am Called");
+        RpcSpeedUp();
+    }
+
+    [TargetRpc]
+    public void RpcSpeedUp()
+    {
+        animSpeed = anim.speed;
+        movementSpeed = GetComponent<AdvancedWalkerController>().getMovementSpeed();
+        GetComponent<AdvancedWalkerController>().setMovementSpeed(10f);
+        anim.speed = 2.5f;
+        StartCoroutine(ResetSpeed());
+    }
+
+    [Command]
+    public void CmdResetSpeed()
+    {
+        RpcResetSpeed();
+    }
+
+    [TargetRpc]
+    public void RpcResetSpeed()
+    {
+        GetComponent<AdvancedWalkerController>().setMovementSpeed(movementSpeed);
+        anim.speed = animSpeed;
+    }
+
+    IEnumerator ResetSpeed()
+    {
+        yield return new WaitForSeconds(3f);
+        CmdResetSpeed();
+    }
+
+    IEnumerator skillTime(float time, GameObject target, int choice, float animSpeed)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (choice == 1)
+        {
+            target.GetComponent<AdvancedWalkerController>().setMovementSpeed(7f);
+            target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
+            target.GetComponent<SoundManager>().adSrc.pitch = 1f;
+        }
+
+
+        else if (choice == 2)
+        {
+            //target.GetComponent<AdvancedWalkerController>().setGravity(47f);
+            target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
+        }
+
+        else if (choice == 3)
+        {
+            target.GetComponent<AdvancedWalkerController>().setMovementSpeed(7f);
+            target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
+            target.GetComponent<SoundManager>().adSrc.pitch = 1f;
+            Animator anim = target.GetComponent<Animator>();
+            anim.speed = animSpeed;
+        }
+
+        else if (choice == 4)
+        {
+            target.GetComponent<AdvancedWalkerController>().setMovementSpeed(7f);
+            target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
+            Animator anim = target.GetComponent<Animator>();
+            anim.speed = animSpeed;
+        }
+    }
+
+    IEnumerator disableParticle(int i, float time, Skills skillFX)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (skillFX.particles[i].GetComponent<DemoReactivator>() != null)
+            skillFX.particles[i].GetComponent<DemoReactivator>().CancelInvoke();
+
+        skillFX.particles[i].gameObject.SetActive(false);
+    }
+
+    [Command]
+    public void CmdResetCdSkill()
+    {
+        RpcResetSkill();
+    }
+
+    [TargetRpc]
+    public void RpcResetSkill()
+    {
+        GetComponent<SkillControls>().resetCD();
+    }
+
+    [Command]
+    public void CmdUltiPoint()
+    {
+        RpcUltiPoint();
+    }
+
+    [TargetRpc]
+    public void RpcUltiPoint()
+    {
+        GetComponent<SkillControls>().setUltiPoint(true);
+    }
+
+    [Command]
+    public void CmdTakeTrixSkill()
+    {
+        RpcTakeTrixSkill();
+    }
+
+    [TargetRpc]
+    public void RpcTakeTrixSkill()
+    {
+        GameObject target = gameObject;
+        AdvancedWalkerController simp = GetComponent<AdvancedWalkerController>();
+        simp = target.GetComponent<AdvancedWalkerController>();
+        TuxAnimations anim = target.GetComponent<TuxAnimations>();
+        SoundManager sound = target.GetComponent<SoundManager>();
+        skillFX = target.GetComponentInChildren<Skills>();
+        particles = skillFX.particles;
+        sound.adSrc.pitch = .2f;
+        anim.playStun();
+        float speed = simp.getMovementSpeed();
+        skillFX.particles[2].SetActive(true);
+        simp.setMovementSpeed(0f);
+
+        StartCoroutine(skillTime(3f, gameObject, 1, 0));
+        StartCoroutine(disableParticle(2, 1f, skillFX));
+    }
+
+    [Command]
+    public void CmdEffectParticle(int pos)
+    {
+        skillFX.particles[pos].SetActive(true);
+    }
+
+    [ClientRpc]
+    public void RpcEffectParticle(int pos)
+    {
+        
+    }
+
+    [Command]
+    public void CmdTakeZilchSkill()
+    {
+        RpcTakeZilchSkill();
+    }
+
+    [TargetRpc]
+    public void RpcTakeZilchSkill()
+    {
+        GetComponent<Skills>().psychosis(gameObject);
+    }
+
+    [Command]
+    public void CmdTakeMazeSkill()
+    {
+        RpcTakeMazeSkill();
+    }
+
+    [TargetRpc]
+    public void RpcTakeMazeSkill()
+    {
+        GetComponent<Skills>().slow(gameObject);
+    }
+
+    #region Collider
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag.Equals("sbTrix"))
+        {
+            Debug.Log("Hit sbTrix");
+            CmdTakeTrixSkill();
+
+        }
+        else if (other.gameObject.tag.Equals("sbZilch"))
+        {
+            Debug.Log("Hit");
+            //CmdTakeZilchSkill();
+            
+        }
+        else if (other.gameObject.tag.Equals("sbMaze"))
+        {
+            Debug.Log("Hit");
+            //CmdTakeMazeSkill();
+           
+        }
+        
+    }
+
+
+    #endregion
 }

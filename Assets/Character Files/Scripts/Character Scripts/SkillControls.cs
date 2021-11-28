@@ -193,6 +193,7 @@ public class SkillControls : MonoBehaviour
     public void setUltiPoint(bool val)
     {
         isUltiPoint = val;
+        ultiSkillButton.interactable = val;
     }
     public Skills GetSkills()
     {
