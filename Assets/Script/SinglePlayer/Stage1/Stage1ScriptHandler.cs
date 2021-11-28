@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using CMF;
 using TMPro;
 
@@ -12,6 +13,7 @@ public class Stage1ScriptHandler : MonoBehaviour
     [SerializeField] GameObject spawnPoint;
     public bool isDead;
     int points;
+    bool gameEnded;
 
     [Header("Environment")]
     [SerializeField] GameObject[] Platforms;
@@ -21,6 +23,10 @@ public class Stage1ScriptHandler : MonoBehaviour
     [SerializeField] GameObject[] QuestionStat;
     [SerializeField] GameObject TimerText;
     [SerializeField] GameObject SolveTimer;
+    [SerializeField] public GameObject PlayerUi;
+    [SerializeField] GameObject endUI;
+    [SerializeField] Text endText;
+
 
 
     //Question Info
@@ -29,7 +35,7 @@ public class Stage1ScriptHandler : MonoBehaviour
     string correctAnswer = "";
 
 
-    private void Start()
+    public void Start()
     {
         // Player = Instantiate(ModelPrefab[Database.instance.UsedCharacter], spawnPoint.transform);
         //Disable player movement script
@@ -39,6 +45,7 @@ public class Stage1ScriptHandler : MonoBehaviour
         isDead = false;
         points = 0;
         GameDefault();
+        StartGame();
     }
 
     private void Update()
@@ -62,8 +69,9 @@ public class Stage1ScriptHandler : MonoBehaviour
 
     public void StartGame()
     {
-        if (QuestionCount < 10)
+        if (QuestionCount <= 3)
         {
+            PlayerUi.SetActive(true);
             StopAllCoroutines();
             Debug.Log("Initialized StartGame()");
             TimerText.SetActive(true);
@@ -107,9 +115,18 @@ public class Stage1ScriptHandler : MonoBehaviour
         }
     }
 
+    public void SetTvTimer(string time)
+    {
+        for (int i = 0; i < TvScreen.Length; i++)
+        {
+            TvScreen[i].GetComponent<TextMeshPro>().text = time;
+        }
+    }
+
     IEnumerator InitializeTimer()
     {
         ResetCoolDown = 4;
+
         while (int.Parse(TimerText.GetComponent<TextMeshProUGUI>().text) > 0)
         {
             if (TimerText.GetComponent<TextMeshProUGUI>().text.Equals("1"))
@@ -119,7 +136,7 @@ public class Stage1ScriptHandler : MonoBehaviour
                 //Disable timer text
                 TimerText.SetActive(false);
                 //StartPlayerMovemtn
-                SetCharacterProperty(true);
+                //SetCharacterProperty(true);
                 //Start Generating the given
                 SetGiven();
                 //Start the timer to solve the given~
@@ -151,8 +168,7 @@ public class Stage1ScriptHandler : MonoBehaviour
             {
                 //Check wrong answer
                 CheckWrongPlatform();
-
-                Debug.Log($"{QuestionCount} Question.");
+                Debug.Log($"{QuestionCount - 1} Question.");
                 //Add Exp to Player
                 StartCoroutine(givePoints());
                 //Disable Player
@@ -210,8 +226,9 @@ public class Stage1ScriptHandler : MonoBehaviour
     public void GameDefault()
     {
 
-        if (QuestionCount <= 2)
+        if (QuestionCount <= 3)
         {
+            gameEnded = false;
             //Disable player animation, movement, skills
             SetCharacterProperty(true);
 
@@ -239,6 +256,10 @@ public class Stage1ScriptHandler : MonoBehaviour
         else
         {
             Debug.Log("Game End");
+            endText.text = "Congratulations! \nYou got " + points + " correct \nanswers!";
+            PlayerUi.SetActive(false);
+            endUI.SetActive(true);
+            gameEnded = true;
         }
 
 
@@ -250,5 +271,10 @@ public class Stage1ScriptHandler : MonoBehaviour
         points++;
         // GameObject.Find("Opening_Game_Script").GetComponent<Database>().playerCurrentExp += 2;
         // GameObject.Find("Opening_Game_Script").GetComponent<PlayerExpCalculator>().UpdatePlayerLevel();
+    }
+
+    public bool isGameEnded()
+    {
+        return gameEnded;
     }
 }
