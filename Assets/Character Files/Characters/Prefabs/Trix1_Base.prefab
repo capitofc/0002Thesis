@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 222504317800863169}
   - component: {fileID: 222504317800863168}
   - component: {fileID: 26978991654940822}
+  - component: {fileID: 2525678543307454964}
   m_Layer: 0
   m_Name: Trix1_Base
   m_TagString: Trix
@@ -392,10 +393,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 222504317811494685}
   skill: {fileID: 222504318058285731}
-  firstSkillBtnText: {fileID: 0}
-  firstSkillButton: {fileID: 0}
-  ultiSkillBtnText: {fileID: 0}
-  ultiSkillButton: {fileID: 0}
 --- !u!114 &222504317800863172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,6 +577,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2525678543307454964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222504317800863183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57208ff6d5236934eae479fae49d5a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 
+  pickUpBtn: {fileID: 0}
 --- !u!1 &222504317811494685
 GameObject:
   m_ObjectHideFlags: 0

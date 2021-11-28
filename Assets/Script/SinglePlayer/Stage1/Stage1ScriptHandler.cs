@@ -208,7 +208,7 @@ public class Stage1ScriptHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         if (!isDead)
-            addPlayerExp();
+            addPoints();
 
         isDead = false;
     }
@@ -277,23 +277,31 @@ public class Stage1ScriptHandler : MonoBehaviour
 
         else
         {
+            addPlayerExp();
             Debug.Log("Game End");
             endText.text = "Congratulations! \nYou got " + points + " correct answers!\nExp. Points Gained : " + points * 2;
             PlayerUi.SetActive(false);
             endUI.SetActive(true);
             gameEnded = true;
-            // GameObject.Find("Opening_Game_Script").GetComponent<Database>().playerCurrentExp += 2 * points;
-            // GameObject.Find("Opening_Game_Script").GetComponent<PlayerExpCalculator>().UpdatePlayerLevel();
+
         }
 
 
     }
 
-    void addPlayerExp()
+    void addPoints()
     {
         Debug.Log("Point Added!");
         points++;
         correctAnswerCounter.GetComponent<TextMeshProUGUI>().text = points.ToString();
+    }
+
+    void addPlayerExp()
+    {
+        GameObject.Find("Opening_Game_Script").GetComponent<Database>().playerCurrentExp += 2 * points;
+        GameObject.Find("Opening_Game_Script").GetComponent<PlayerExpCalculator>().UpdatePlayerLevel();
+        GameObject.Find("Opening_Game_Script").GetComponent<Database>().playerMoney += points * 5;
+        SaveData.SaveDataProgress(Database.instance);
     }
 
     public bool isGameEnded()

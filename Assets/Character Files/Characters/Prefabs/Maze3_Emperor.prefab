@@ -14995,6 +14995,7 @@ GameObject:
   - component: {fileID: 2193243920325789452}
   - component: {fileID: 2193243920325789453}
   - component: {fileID: -8607141745954242503}
+  - component: {fileID: 8271096652428722382}
   m_Layer: 0
   m_Name: Maze3_Emperor
   m_TagString: Maze
@@ -15130,10 +15131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 2193243921265903197}
   skill: {fileID: 2193243920017773179}
-  firstSkillBtnText: {fileID: 0}
-  firstSkillButton: {fileID: 0}
-  ultiSkillBtnText: {fileID: 0}
-  ultiSkillButton: {fileID: 0}
 --- !u!114 &2193243920325789449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15318,6 +15315,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8271096652428722382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193243920325789490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57208ff6d5236934eae479fae49d5a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 
+  pickUpBtn: {fileID: 0}
 --- !u!1 &2193243920348724177
 GameObject:
   m_ObjectHideFlags: 0

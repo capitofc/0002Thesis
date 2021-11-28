@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657618, g: 0.49641132, b: 0.57481575, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657582, g: 0.49641097, b: 0.5748151, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6603,11 +6603,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622671898}
   m_CullTransparentMesh: 1
---- !u!1 &633527660 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 958265058324978368, guid: 82bfbe781aad14e4ba5be7ed9dfc9210, type: 3}
-  m_PrefabInstance: {fileID: 1119632880}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &633527661 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 958265058324978369, guid: 82bfbe781aad14e4ba5be7ed9dfc9210, type: 3}
@@ -31094,7 +31089,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillDuration: 0
-  pushDistance: 0
   particles:
   - {fileID: 3003926862579448354}
   - {fileID: 3003926861722813319}
@@ -97652,7 +97646,7 @@ MonoBehaviour:
   backButtons:
   - Cancel
   submitButton: Submit
-  singleton: 1
+  singleton: 0
   onUseKeyboard:
     m_PersistentCalls:
       m_Calls: []
@@ -97790,7 +97784,7 @@ MonoBehaviour:
   instantiateDatabase: 0
   preloadResources: 1
   warmUpConversationController: 0
-  dontDestroyOnLoad: 1
+  dontDestroyOnLoad: 0
   allowOnlyOneInstance: 1
   dialogueTimeMode: 0
   debugLevel: 2
@@ -97950,7 +97944,6 @@ MonoBehaviour:
   slideGravity: 10
   slopeLimit: 80
   useLocalMomentum: 0
-  joystick: {fileID: 633527660}
   cameraTransform: {fileID: 3003926862501054091}
 --- !u!1 &5904142292072620342
 GameObject:

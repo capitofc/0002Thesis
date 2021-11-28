@@ -33,6 +33,7 @@ public class ButtonsHandler : MonoBehaviour
 
     public void pickUp()
     {
-        player.GetComponent<AdvancedWalkerController>().pickUp();
+        player.GetComponent<Arithmetic_Character_Script>().pickUpMethod();
     }
+
 }

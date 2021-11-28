@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,22 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &20676027 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3003926861665688948, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
-  m_PrefabInstance: {fileID: 1213277506}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &20676033 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3003926861665688944, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
-  m_PrefabInstance: {fileID: 1213277506}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20676027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9643067004b6d4458aa61152a7d9d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &178077559
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,11 +355,6 @@ MonoBehaviour:
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
   selectedDatabase: {fileID: 11400000, guid: fa338c4e3dc476c4bb7bb2739740a989, type: 2}
---- !u!224 &255151366 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7343453087758987143, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
-  m_PrefabInstance: {fileID: 5570922793765454712}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &296663157
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,7 +899,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1214936408}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -1128,7 +1107,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1214936408}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -1276,7 +1255,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1214936408}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -2082,7 +2061,7 @@ PrefabInstance:
     - target: {fileID: 3003926861665688958, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
       propertyPath: handle
       value: 
-      objectReference: {fileID: 255151366}
+      objectReference: {fileID: 0}
     - target: {fileID: 3003926861665688958, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
       propertyPath: background
       value: 
@@ -2134,7 +2113,7 @@ PrefabInstance:
     - target: {fileID: 3291871006535443286, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
       propertyPath: handle
       value: 
-      objectReference: {fileID: 255151366}
+      objectReference: {fileID: 0}
     - target: {fileID: 3291871006535443286, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
       propertyPath: background
       value: 
@@ -2142,7 +2121,7 @@ PrefabInstance:
     - target: {fileID: 3291871006535443287, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
       propertyPath: joystick
       value: 
-      objectReference: {fileID: 1214936408}
+      objectReference: {fileID: 0}
     - target: {fileID: 3291871006535443288, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
       propertyPath: firstSKillBtn
       value: 
@@ -2174,18 +2153,13 @@ PrefabInstance:
     - target: {fileID: 5875322411226625310, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
       propertyPath: joystick
       value: 
-      objectReference: {fileID: 1214936408}
+      objectReference: {fileID: 0}
     - target: {fileID: 8582215562885099606, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edc8ae97a951b364699a3595459b6c44, type: 3}
---- !u!1 &1214936408 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7343453089152527484, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
-  m_PrefabInstance: {fileID: 5570922793765454712}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1214936409 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7343453089152527485, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
@@ -3894,7 +3868,7 @@ PrefabInstance:
     - target: {fileID: 180170253, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 20676033}
+      objectReference: {fileID: 0}
     - target: {fileID: 180170253, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3918,7 +3892,7 @@ PrefabInstance:
     - target: {fileID: 1304140249, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 20676027}
+      objectReference: {fileID: 0}
     - target: {fileID: 1304140249, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3942,7 +3916,7 @@ PrefabInstance:
     - target: {fileID: 1510607169, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 20676033}
+      objectReference: {fileID: 0}
     - target: {fileID: 1510607169, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -4282,6 +4256,14 @@ PrefabInstance:
     - target: {fileID: 5570922792435445288, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
       propertyPath: m_Name
       value: Dialogue Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570922792440977116, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
+      propertyPath: singleton
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570922792440978604, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}
+      propertyPath: dontDestroyOnLoad
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f98fe2a352439241b7faa9f1fc63b42, type: 3}

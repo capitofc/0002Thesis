@@ -62,6 +62,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     public void resetJoystick()
     {
         input = Vector2.zero;
+        if (handle != null)
+            resetPos();
     }
 
     void resetPos()

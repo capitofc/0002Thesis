@@ -97,8 +97,11 @@ namespace CMF
 
         private void OnEnable()
         {
-            joystick = GameObject.Find("Joystick");
-            myJs = joystick.GetComponent<Joystick>();
+            if (joystick == null)
+            {
+                joystick = GameObject.Find("Joystick");
+                myJs = joystick.GetComponent<Joystick>();
+            }
         }
         //This function is called right after Awake(); It can be overridden by inheriting scripts;
         protected virtual void Setup()
@@ -279,6 +282,8 @@ namespace CMF
 
                 _velocity += Vector3.ProjectOnPlane(cameraTransform.right, tr.up).normalized * myJs.GetHorizontal();
                 _velocity += Vector3.ProjectOnPlane(cameraTransform.forward, tr.up).normalized * myJs.GetVertical();
+
+
             }
 
             //If necessary, clamp movement vector to magnitude of 1f;

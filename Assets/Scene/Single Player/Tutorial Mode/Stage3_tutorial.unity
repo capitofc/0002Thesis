@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3204,11 +3204,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: c023596d41bd5c649882dd8e38423656, type: 3}
---- !u!4 &317000528 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6973662956823385530, guid: facfb447c4a8df04f815e0e15b50bfad, type: 3}
-  m_PrefabInstance: {fileID: 1976528916}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &326372933
 Mesh:
   m_ObjectHideFlags: 0
@@ -4881,7 +4876,7 @@ RectTransform:
   - {fileID: 794130763}
   - {fileID: 1334405198}
   m_Father: {fileID: 7585888719413319235}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -15714,6 +15709,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7585888719413319235}
     m_Modifications:
+    - target: {fileID: 6502799313964836826, guid: facfb447c4a8df04f815e0e15b50bfad, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6973662956823385528, guid: facfb447c4a8df04f815e0e15b50bfad, type: 3}
       propertyPath: m_Name
       value: Button Handler
@@ -15768,6 +15767,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: facfb447c4a8df04f815e0e15b50bfad, type: 3}
+--- !u!224 &1976528917 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6502799313964836826, guid: facfb447c4a8df04f815e0e15b50bfad, type: 3}
+  m_PrefabInstance: {fileID: 1976528916}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1981234320 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 99d451e401b03e848a72097732d4095d, type: 3}
@@ -17994,7 +17998,7 @@ RectTransform:
   - {fileID: 5769399883102686096}
   - {fileID: 5769399883899020136}
   m_Father: {fileID: 7585888719413319235}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -21361,7 +21365,7 @@ RectTransform:
   - {fileID: 5769399882578349184}
   - {fileID: 5769399883797007504}
   m_Father: {fileID: 7585888719413319235}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -31724,7 +31728,7 @@ RectTransform:
   - {fileID: 5769399883236796526}
   - {fileID: 5769399883334192531}
   m_Father: {fileID: 7585888719413319235}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -38877,7 +38881,7 @@ RectTransform:
   m_Children:
   - {fileID: 5769399882588413252}
   m_Father: {fileID: 7585888719413319235}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -41928,7 +41932,7 @@ RectTransform:
   - {fileID: 5769399883997931638}
   - {fileID: 5769399883086018880}
   m_Father: {fileID: 7585888719413319235}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -42073,7 +42077,7 @@ RectTransform:
   m_Children:
   - {fileID: 5769399882383480976}
   m_Father: {fileID: 7585888719413319235}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -46149,7 +46153,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 317000528}
   - {fileID: 491877375}
   - {fileID: 5769399882216167601}
   - {fileID: 5769399883809148879}
@@ -46157,6 +46160,7 @@ RectTransform:
   - {fileID: 2055445883571848363}
   - {fileID: 5769399883367780413}
   - {fileID: 5769399883833626327}
+  - {fileID: 1976528917}
   - {fileID: 2055445884766806084}
   m_Father: {fileID: 7585888719426967557}
   m_RootOrder: 0
@@ -46272,7 +46276,7 @@ MonoBehaviour:
   backButtons:
   - Cancel
   submitButton: Submit
-  singleton: 1
+  singleton: 0
   onUseKeyboard:
     m_PersistentCalls:
       m_Calls: []
@@ -46393,7 +46397,7 @@ MonoBehaviour:
   instantiateDatabase: 0
   preloadResources: 1
   warmUpConversationController: 0
-  dontDestroyOnLoad: 1
+  dontDestroyOnLoad: 0
   allowOnlyOneInstance: 1
   dialogueTimeMode: 0
   debugLevel: 2

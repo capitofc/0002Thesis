@@ -49050,6 +49050,7 @@ GameObject:
   - component: {fileID: 3355870327446792019}
   - component: {fileID: 3355870327446792028}
   - component: {fileID: 1885895884940185140}
+  - component: {fileID: 531717015210824484}
   m_Layer: 0
   m_Name: Trix3_Cyborg
   m_TagString: Trix
@@ -49185,10 +49186,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 3355870326362672451}
   skill: {fileID: 3355870326362589745}
-  firstSkillBtnText: {fileID: 0}
-  firstSkillButton: {fileID: 0}
-  ultiSkillBtnText: {fileID: 0}
-  ultiSkillButton: {fileID: 0}
 --- !u!114 &3355870327446792016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49373,6 +49370,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &531717015210824484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3355870327446792029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57208ff6d5236934eae479fae49d5a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 
+  pickUpBtn: {fileID: 0}
 --- !u!1 &3355870327495255813
 GameObject:
   m_ObjectHideFlags: 0

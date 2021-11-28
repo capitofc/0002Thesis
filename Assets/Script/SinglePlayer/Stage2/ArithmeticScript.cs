@@ -48,7 +48,7 @@ public class ArithmeticScript : MonoBehaviour
         if (other.gameObject.tag.Equals("Maze") || other.gameObject.tag.Equals("Trix") || other.gameObject.tag.Equals("Zilch"))
         {
             GameObject Stage2Main = GameObject.Find("SinglePlayerHandler");
-            if (Stage2Main.GetComponent<Stage2ScriptHandler>().onCollect)
+            if (Stage2Main.GetComponent<Stage2ScriptHandler>().onCollect)   
             {
                 Stage2Main.GetComponent<Stage2ScriptHandler>().UpdateGivenText(value);
                 gameObject.SetActive(false);
