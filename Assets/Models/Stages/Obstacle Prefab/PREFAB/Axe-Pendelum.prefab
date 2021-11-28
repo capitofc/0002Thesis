@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2216535600572551803}
-  - component: {fileID: 1551885681244113088}
+  - component: {fileID: 9182064228427330656}
   m_Layer: 0
   m_Name: Axe-Pendelum
   m_TagString: Untagged
@@ -118,7 +118,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1551885681244113088
+--- !u!114 &9182064228427330656
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,12 +127,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1551885681244113089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 961fa4ff4b5f6fa448e33eb86dbad1f0, type: 3}
+  m_Script: {fileID: 11500000, guid: e0c7bc0b61917e246895ea089961f67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
   limit: 75
-  randomStart: 0
+  startValue: 0
 --- !u!1 &4551874244917193629
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +306,6 @@ GameObject:
   - component: {fileID: 1802590315052632668}
   - component: {fileID: 5772095252125573022}
   - component: {fileID: 2603538164550956659}
-  - component: {fileID: 6976606938109458951}
   - component: {fileID: 6976606938109458944}
   m_Layer: 0
   m_Name: AxeBlade
@@ -378,20 +377,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6976606938109458951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6976606938109458945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdffcc51f538bef4c8abd3b5bbb6ff17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 10
-  stunTime: 0.5
 --- !u!64 &6976606938109458944
 MeshCollider:
   m_ObjectHideFlags: 0

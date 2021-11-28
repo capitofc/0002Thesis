@@ -9,12 +9,15 @@ public class SoundScript : MonoBehaviour
     [Header("Sound Effects")]
     [SerializeField] AudioClip ClickFx;
     [SerializeField] AudioClip SuccessfulFx;
+    [SerializeField] AudioClip valorant3;
 
     [SerializeField] AudioSource clickAS;
 
     private void Start()
     {
         instance = this;
+        if (!clickAS.isPlaying)
+            clickAS.PlayOneShot(valorant3);
     }
 
     public void playClickFx()

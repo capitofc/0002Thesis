@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using CMF;
 using TMPro;
 
@@ -10,6 +11,9 @@ public class Stage1ScriptHandler : MonoBehaviour
     [SerializeField] GameObject Player;
     [SerializeField] GameObject[] ModelPrefab;
     [SerializeField] GameObject spawnPoint;
+    public bool isDead;
+    int points;
+    bool gameEnded;
 
     [Header("Environment")]
     [SerializeField] GameObject[] Platforms;
@@ -19,6 +23,14 @@ public class Stage1ScriptHandler : MonoBehaviour
     [SerializeField] GameObject[] QuestionStat;
     [SerializeField] GameObject TimerText;
     [SerializeField] GameObject SolveTimer;
+    [SerializeField] public GameObject PlayerUi;
+    [SerializeField] GameObject endUI;
+    [SerializeField] Text endText;
+    [SerializeField] GameObject correctAnswerCounter;
+    [SerializeField] GameObject currentQuestion;
+    [SerializeField] public GameObject playerJoystick;
+    [SerializeField] public GameObject buttons;
+
 
 
     //Question Info
@@ -27,14 +39,21 @@ public class Stage1ScriptHandler : MonoBehaviour
     string correctAnswer = "";
 
 
-    private void Start()
+    public void Start()
     {
-        //Player = Instantiate(ModelPrefab[Database.instance.UsedCharacter], spawnPoint.transform);
+        // Player = Instantiate(ModelPrefab[Database.instance.UsedCharacter], spawnPoint.transform);
         //Disable player movement script
 
         //FOR TESTING SCRIPT
+
+        playerJoystick.SetActive(true);
         Player = Instantiate(Player, spawnPoint.transform);
+        playerJoystick.SetActive(false);
+
+        isDead = false;
+        points = 0;
         GameDefault();
+        StartGame();
     }
 
     private void Update()
@@ -42,6 +61,11 @@ public class Stage1ScriptHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             StartGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            QuestionCount++;
         }
     }
 
@@ -53,8 +77,13 @@ public class Stage1ScriptHandler : MonoBehaviour
 
     public void StartGame()
     {
-        if(QuestionCount < 10)
+
+
+        if (QuestionCount <= 10)
         {
+            PlayerUi.SetActive(true);
+            playerJoystick.SetActive(false);
+            buttons.SetActive(false);
             StopAllCoroutines();
             Debug.Log("Initialized StartGame()");
             TimerText.SetActive(true);
@@ -65,12 +94,14 @@ public class Stage1ScriptHandler : MonoBehaviour
     public void SetGiven()
     {
         Stage1GivenHandler Given = GetComponent<Stage1GivenHandler>().ReturnInstance();
-        string[] possibleAnswer = {"bool", "char", "float", "str", "int"};
+        string[] possibleAnswer = { "bool", "char", "float", "str", "int" };
         correctAnswer = possibleAnswer[Random.Range(0, 5)];
         Debug.Log($"Correct Answer : {correctAnswer}");
+        //Add question
+        QuestionCount++;
         switch (correctAnswer)
         {
-            case "bool":  
+            case "bool":
                 SetGiven(Given.GenerateBool());
                 break;
             case "char":
@@ -96,10 +127,19 @@ public class Stage1ScriptHandler : MonoBehaviour
         }
     }
 
+    public void SetTvTimer(string time)
+    {
+        for (int i = 0; i < TvScreen.Length; i++)
+        {
+            TvScreen[i].GetComponent<TextMeshPro>().text = time;
+        }
+    }
+
     IEnumerator InitializeTimer()
     {
         ResetCoolDown = 4;
-        while(int.Parse(TimerText.GetComponent<TextMeshProUGUI>().text) > 0)
+
+        while (int.Parse(TimerText.GetComponent<TextMeshProUGUI>().text) > 0)
         {
             if (TimerText.GetComponent<TextMeshProUGUI>().text.Equals("1"))
             {
@@ -107,8 +147,11 @@ public class Stage1ScriptHandler : MonoBehaviour
                 StopCoroutine(InitializeTimer());
                 //Disable timer text
                 TimerText.SetActive(false);
+                PlayerUi.SetActive(true);
+                playerJoystick.SetActive(true);
+                buttons.SetActive(true);
                 //StartPlayerMovemtn
-                SetCharacterProperty(true);
+                //SetCharacterProperty(true);
                 //Start Generating the given
                 SetGiven();
                 //Start the timer to solve the given~
@@ -140,11 +183,11 @@ public class Stage1ScriptHandler : MonoBehaviour
             {
                 //Check wrong answer
                 CheckWrongPlatform();
-                //Add question
-                QuestionCount++;
-                Debug.Log($"{QuestionCount} Question.");
+                Debug.Log($"{QuestionCount - 1} Question.");
+                //Add Exp to Player
+                StartCoroutine(givePoints());
                 //Disable Player
-                SetCharacterProperty(false);
+                SetCharacterProperty(true);
                 //Disable Solve Timer
                 SolveTimer.SetActive(false);
                 //Timer for reseting the game
@@ -157,11 +200,20 @@ public class Stage1ScriptHandler : MonoBehaviour
         }
     }
 
+    IEnumerator givePoints()
+    {
+        yield return new WaitForSeconds(3f);
+        if (!isDead)
+            addPlayerExp();
+
+        isDead = false;
+    }
+
     IEnumerator ResetGameTimer()
     {
-        while(ResetCoolDown > 0)
+        while (ResetCoolDown > 0)
         {
-            if(ResetCoolDown == 1)
+            if (ResetCoolDown == 1 && !isDead)
             {
                 StopCoroutine(ResetGameTimer());
                 //Reset the game
@@ -187,34 +239,61 @@ public class Stage1ScriptHandler : MonoBehaviour
 
     public void GameDefault()
     {
-        //Disable player animation, movement, skills
-        SetCharacterProperty(false);
-
-        //Reset Timer Text
-        TimerText.GetComponent<TextMeshProUGUI>().text = 4 +"";
-        SolveTimer.GetComponent<TextMeshProUGUI>().text = 11 +"";
-
-        //Clear TV Screens
-        for(int i = 0; i < TvScreen.Length; i++)
+        currentQuestion.GetComponent<TextMeshProUGUI>().text = QuestionCount.ToString() + "/10";
+        if (QuestionCount <= 10)
         {
-            TvScreen[i].GetComponent<TextMeshPro>().text = "";
+            isDead = false;
+            gameEnded = false;
+            //Disable player animation, movement, skills
+            SetCharacterProperty(true);
+            playerJoystick.SetActive(false);
+            buttons.SetActive(true);
+            PlayerUi.SetActive(false);
+
+            //Reset Timer Text
+            TimerText.GetComponent<TextMeshProUGUI>().text = 4 + "";
+            SolveTimer.GetComponent<TextMeshProUGUI>().text = 11 + "";
+
+            //Clear TV Screens
+            for (int i = 0; i < TvScreen.Length; i++)
+            {
+                TvScreen[i].GetComponent<TextMeshPro>().text = "";
+            }
+
+            //Reset visibility of all platforms
+            for (int i = 0; i < Platforms.Length; i++)
+            {
+                Platforms[i].SetActive(true);
+            }
+
+            //Hide Timer
+            TimerText.SetActive(false);
+            SolveTimer.SetActive(false);
         }
 
-        //Reset visibility of all platforms
-        for(int i = 0; i < Platforms.Length; i++)
+        else
         {
-            Platforms[i].SetActive(true);
+            Debug.Log("Game End");
+            endText.text = "Congratulations! \nYou got " + points + " correct \nanswers!";
+            PlayerUi.SetActive(false);
+            endUI.SetActive(true);
+            gameEnded = true;
         }
 
-        //Hide Timer
-        TimerText.SetActive(false);
-        SolveTimer.SetActive(false);
 
-        //Reset question count
-        QuestionCount = 1;
     }
 
+    void addPlayerExp()
+    {
+        Debug.Log("Point Added!");
+        points++;
+        correctAnswerCounter.GetComponent<TextMeshProUGUI>().text = points.ToString();
+        // GameObject.Find("Opening_Game_Script").GetComponent<Database>().playerCurrentExp += 2;
+        // GameObject.Find("Opening_Game_Script").GetComponent<PlayerExpCalculator>().UpdatePlayerLevel();
+    }
 
-
-    
-} 
+    public bool isGameEnded()
+    {
+        return gameEnded;
+    }
+}

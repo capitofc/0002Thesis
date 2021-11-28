@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 222504317800863170}
   - component: {fileID: 222504317800863169}
   - component: {fileID: 222504317800863168}
+  - component: {fileID: 26978991654940822}
   m_Layer: 0
   m_Name: Trix1_Base
   m_TagString: Trix
@@ -391,6 +392,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 222504317811494685}
   skill: {fileID: 222504318058285731}
+  firstSkillBtnText: {fileID: 0}
+  firstSkillButton: {fileID: 0}
+  ultiSkillBtnText: {fileID: 0}
+  ultiSkillButton: {fileID: 0}
 --- !u!114 &222504317800863172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,6 +561,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &26978991654940822
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222504317800863183}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: e7c4a4ae5bfe22543a7aa7a5ab1631d8, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0b605d3b04dee1a44a313159a5c54541, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &222504317811494685
 GameObject:
   m_ObjectHideFlags: 0
@@ -19851,7 +19875,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillDuration: 0
-  pushDistance: 0
   particles:
   - {fileID: 222504319338548305}
   - {fileID: 222504319693907507}

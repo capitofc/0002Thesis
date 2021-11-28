@@ -45118,6 +45118,7 @@ GameObject:
   - component: {fileID: 3291871006535443293}
   - component: {fileID: 2067603378653130085}
   - component: {fileID: 8071461571924251929}
+  - component: {fileID: 1166737950324913948}
   m_Layer: 0
   m_Name: Maze1_Base
   m_TagString: Maze
@@ -45253,6 +45254,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 3291871005376776677}
   skill: {fileID: 3291871007492124942}
+  firstSkillBtnText: {fileID: 0}
+  firstSkillButton: {fileID: 0}
+  ultiSkillBtnText: {fileID: 0}
+  ultiSkillButton: {fileID: 0}
 --- !u!114 &3291871006535443291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45418,6 +45423,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 10
+--- !u!95 &1166737950324913948
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291871006535443292}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 310e6b9a54c21414d9d312266992035b, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0b605d3b04dee1a44a313159a5c54541, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3291871006812736752
 GameObject:
   m_ObjectHideFlags: 0
@@ -65045,7 +65069,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillDuration: 0
-  pushDistance: 0
   particles:
   - {fileID: 3291871005412701527}
   - {fileID: 3291871006812736754}
@@ -65599,7 +65622,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4942361654789190914}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 310e6b9a54c21414d9d312266992035b, type: 3}
   m_Controller: {fileID: 9100000, guid: 0b605d3b04dee1a44a313159a5c54541, type: 2}
   m_CullingMode: 1

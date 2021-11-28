@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2129,7 +2129,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 929330838, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
   m_PrefabInstance: {fileID: 1311780153900589687}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1393521856}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9168f5d5ad171ca4c89d3d45b8287342, type: 3}
@@ -2350,7 +2350,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1311780155015294876, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
   m_PrefabInstance: {fileID: 1311780153900589687}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1393521856}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 312d732d58ff0c44eaa8cdde0cad9660, type: 3}
@@ -2361,7 +2361,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1311780155015294875, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
   m_PrefabInstance: {fileID: 1311780153900589687}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1393521856}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2047b4c9e84249c40991c01411f8c034, type: 3}
@@ -2541,6 +2541,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383715536}
   m_CullTransparentMesh: 1
+--- !u!1 &1393521856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1311780155015294879, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
+  m_PrefabInstance: {fileID: 1311780153900589687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1393521863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393521856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4df74b4554b5bb1408138cfa9d51d975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1653032983
 GameObject:
   m_ObjectHideFlags: 0
@@ -3603,9 +3620,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 929330838, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
+      propertyPath: valorant3
+      value: 
+      objectReference: {fileID: 8300000, guid: ee56b4b5a2f3e2d44961a6c5b210fa21, type: 3}
     - target: {fileID: 1844488454, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844488454, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1311780155015294875, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
       propertyPath: PlayerDataPrefabPanel
@@ -3670,6 +3695,10 @@ PrefabInstance:
     - target: {fileID: 2520284853934769948, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
       propertyPath: m_Volume
       value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520284853934769948, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2520284853934769948, guid: 7c433e9efdee98c469bbca1c7b192c30, type: 3}
       propertyPath: m_PlayOnAwake
