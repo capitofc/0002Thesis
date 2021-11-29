@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stage2ScriptHandler : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class Stage2ScriptHandler : MonoBehaviour
 
     [Header("Game UI")]
     [SerializeField] GameObject correctAnswers;
+    [SerializeField] Text finishText;
 
     [SerializeField] public GameObject Given_timer_AnswerCtr;
     [SerializeField] public GameObject PlayerBtnHandler;
@@ -366,5 +368,8 @@ public class Stage2ScriptHandler : MonoBehaviour
     {
         playerUIDisplay.SetActive(false);
         Given_timer_AnswerCtr.SetActive(false);
+        finishText.text = "Time Consumed: " + timeConsumed.ToString() +
+                          "\nExp. Gained: " + calculatePoints().ToString() +
+                          "\nCoins Earned: " + calculatePoints() * 5;
     }
 }

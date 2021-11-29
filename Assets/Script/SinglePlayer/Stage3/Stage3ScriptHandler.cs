@@ -44,7 +44,7 @@ public class Stage3ScriptHandler : MonoBehaviour
         DisplayGivenText.SetActive(true);
         string given = "";
         int rand = Random.Range(0, 2);
-        if(rand == 0)
+        if (rand == 0)
         {
             correctAnswer = "T";
             int size = Stage3GivenHandler.TrueGiven.Count;
@@ -62,9 +62,9 @@ public class Stage3ScriptHandler : MonoBehaviour
     IEnumerator ReadyTimerCoroutine()
     {
         StartTimerText.SetActive(true);
-        while(int.Parse(StartTimerText.GetComponent<TextMeshProUGUI>().text) > 0)
+        while (int.Parse(StartTimerText.GetComponent<TextMeshProUGUI>().text) > 0)
         {
-            if(int.Parse(StartTimerText.GetComponent<TextMeshProUGUI>().text) == 1)
+            if (int.Parse(StartTimerText.GetComponent<TextMeshProUGUI>().text) == 1)
             {
                 StopAllCoroutines();
                 StartTimerText.SetActive(false);
@@ -72,10 +72,10 @@ public class Stage3ScriptHandler : MonoBehaviour
                 GenerateGiven();
                 //Start Timer Text To finish
                 StartCoroutine(TimerFinishTextCoroutine());
-                
+
             }
             int newInt = int.Parse(StartTimerText.GetComponent<TextMeshProUGUI>().text);
-            newInt--;
+            newInt++;
             StartTimerText.GetComponent<TextMeshProUGUI>().text = newInt.ToString();
             yield return new WaitForSeconds(1f);
         }
@@ -120,6 +120,4 @@ public class Stage3ScriptHandler : MonoBehaviour
             Player.transform.position = CheckPointGO.transform.position;
         }
     }
-
-   
 }

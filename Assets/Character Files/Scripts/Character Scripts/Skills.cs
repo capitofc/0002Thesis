@@ -67,6 +67,24 @@ public class Skills : MonoBehaviour
         StartCoroutine(disableParticle(2, 1f, skillFX));
     }
 
+    public void ObsStun(GameObject target)
+    {
+        simp = target.GetComponent<AdvancedWalkerController>();
+        TuxAnimations anim = target.GetComponent<TuxAnimations>();
+        SoundManager sound = target.GetComponent<SoundManager>();
+        Skills skillFX = target.GetComponentInChildren<Skills>();
+
+        sound.adSrc.pitch = .2f;
+        anim.playStun();
+        float speed = simp.getMovementSpeed();
+        skillFX.particles[2].SetActive(true);
+        simp.setMovementSpeed(0f);
+
+
+        StartCoroutine(skillTime(stunSlowDuration(), target, 1, 0));
+        StartCoroutine(disableParticle(2, 1f, skillFX));
+    }
+
     public void dash(GameObject target)
     {
         TuxAnimations anim = target.GetComponent<TuxAnimations>();

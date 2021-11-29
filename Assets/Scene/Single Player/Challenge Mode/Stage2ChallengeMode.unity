@@ -9065,6 +9065,17 @@ Transform:
   m_Father: {fileID: 1482371829}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &688451926 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176204242026977097, guid: 0e848985e89184642ad5e86b46b9265a, type: 3}
+  m_PrefabInstance: {fileID: 1358985764}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &690975412
 Mesh:
   m_ObjectHideFlags: 0
@@ -10241,6 +10252,10 @@ PrefabInstance:
     - target: {fileID: 5263193848945581322, guid: de4e8ae22411dba4f971edf49f8738f2, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263193849274771168, guid: de4e8ae22411dba4f971edf49f8738f2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5263193849274771170, guid: de4e8ae22411dba4f971edf49f8738f2, type: 3}
       propertyPath: m_Material
@@ -12844,6 +12859,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1379599419}
     m_Modifications:
+    - target: {fileID: 5263193849274771168, guid: de4e8ae22411dba4f971edf49f8738f2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5263193850122822931, guid: de4e8ae22411dba4f971edf49f8738f2, type: 3}
       propertyPath: m_Name
       value: Pendulum (1)
@@ -17505,6 +17524,10 @@ PrefabInstance:
     - target: {fileID: 5263193848945581322, guid: de4e8ae22411dba4f971edf49f8738f2, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263193849274771168, guid: de4e8ae22411dba4f971edf49f8738f2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5263193850122822931, guid: de4e8ae22411dba4f971edf49f8738f2, type: 3}
       propertyPath: m_Name
@@ -25081,6 +25104,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1379599419}
     m_Modifications:
+    - target: {fileID: 5263193849274771168, guid: de4e8ae22411dba4f971edf49f8738f2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5263193850122822931, guid: de4e8ae22411dba4f971edf49f8738f2, type: 3}
       propertyPath: m_Name
       value: Pendulum
@@ -29218,6 +29245,7 @@ MonoBehaviour:
   CurrentQuestionNumberText: {fileID: 1800599656}
   playerUIDisplay: {fileID: 1066949374}
   correctAnswers: {fileID: 1824253937}
+  finishText: {fileID: 688451926}
   Given_timer_AnswerCtr: {fileID: 2083385601002592446}
   PlayerBtnHandler: {fileID: 1940981257}
   joyStick: {fileID: 0}
@@ -29776,6 +29804,7 @@ GameObject:
   - component: {fileID: 2030798029}
   - component: {fileID: 2030798028}
   - component: {fileID: 2030798030}
+  - component: {fileID: 2030798031}
   m_Layer: 0
   m_Name: Finish Line
   m_TagString: Untagged
@@ -29794,8 +29823,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 24.07, y: 41.44, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.8545675, y: 21.659405, z: 1}
+  m_Center: {x: 0.30261374, y: 9.890299, z: 0}
 --- !u!4 &2030798029
 Transform:
   m_ObjectHideFlags: 0
@@ -29804,7 +29833,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030798027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.2, y: -5.8, z: 33.9}
+  m_LocalPosition: {x: 14.2, y: -5.8, z: -109.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -29823,6 +29852,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endgame: {fileID: 1571069693}
+--- !u!65 &2030798031
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030798027}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.882286, y: 14.311642, z: 1}
+  m_Center: {x: 0.3781891, y: 10.589077, z: 0}
 --- !u!1 &2034138489
 GameObject:
   m_ObjectHideFlags: 0
@@ -31977,6 +32019,7 @@ GameObject:
   - component: {fileID: 3469287836672265127}
   - component: {fileID: 1711813855899811693}
   - component: {fileID: 720612835}
+  - component: {fileID: 919132148899798713}
   m_Layer: 0
   m_Name: stage2 Ground_6
   m_TagString: Enemy
@@ -31984,6 +32027,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &919132148899798713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148899798712}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.723197, y: 0.6620778, z: 29.208118}
+  m_Center: {x: -49.9, y: 33.931038, z: 58.691067}
 --- !u!1 &919132149234991192
 GameObject:
   m_ObjectHideFlags: 0
