@@ -81,6 +81,7 @@ public class MasterLanScript : NetworkManager
         NetworkStorage.GetComponent<NetworkStorage>().PositionPos = 0;
     }
 
+
     public void ChangeServerScene()
     {
         string sceneName = NetworkStorage.GetComponent<NetworkStorage>().MapName;
@@ -102,6 +103,7 @@ public class MasterLanScript : NetworkManager
                 Debug.Log("Map does not exist");
                 break;
         }
+        RunDefaultUi();
         ServerChangeScene(sceneName);
     }
 }

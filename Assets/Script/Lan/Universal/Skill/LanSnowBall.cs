@@ -10,6 +10,11 @@ public class LanSnowBall : NetworkBehaviour
         Test();
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
     public void Test()
     {
         gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);

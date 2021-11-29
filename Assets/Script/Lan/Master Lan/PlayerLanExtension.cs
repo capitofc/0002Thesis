@@ -13,7 +13,7 @@ public class PlayerLanExtension : NetworkBehaviour
 
     [SerializeField] public GameObject ballSpointPoint;
     Skills skillFX;
-    GameObject[] particles;
+    public GameObject[] particles;
 
 
     Animator anim;
@@ -45,9 +45,16 @@ public class PlayerLanExtension : NetworkBehaviour
             mover = GetComponent<Mover>();
             CmdAddToPlayerList(gameObject);
             StageLocalPlayerReference();
-            Invoke(nameof(FindThrower), 2f);
             skillFX = gameObject.GetComponentInChildren<Skills>();
             particles = skillFX.particles;
+        }
+    }
+
+    private void Update()
+    {
+        if(isLocalPlayer && Input.GetKeyDown(KeyCode.Alpha0))
+        {
+
         }
     }
 
@@ -167,14 +174,11 @@ public class PlayerLanExtension : NetworkBehaviour
             target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
             target.GetComponent<SoundManager>().adSrc.pitch = 1f;
         }
-
-
         else if (choice == 2)
         {
             //target.GetComponent<AdvancedWalkerController>().setGravity(47f);
             target.GetComponent<AdvancedWalkerController>().setJumpSpeed(6f);
         }
-
         else if (choice == 3)
         {
             target.GetComponent<AdvancedWalkerController>().setMovementSpeed(7f);
@@ -183,7 +187,6 @@ public class PlayerLanExtension : NetworkBehaviour
             Animator anim = target.GetComponent<Animator>();
             anim.speed = animSpeed;
         }
-
         else if (choice == 4)
         {
             target.GetComponent<AdvancedWalkerController>().setMovementSpeed(7f);
@@ -241,28 +244,24 @@ public class PlayerLanExtension : NetworkBehaviour
         simp = target.GetComponent<AdvancedWalkerController>();
         TuxAnimations anim = target.GetComponent<TuxAnimations>();
         SoundManager sound = target.GetComponent<SoundManager>();
-        skillFX = target.GetComponentInChildren<Skills>();
-        particles = skillFX.particles;
         sound.adSrc.pitch = .2f;
-        anim.playStun();
         float speed = simp.getMovementSpeed();
-        skillFX.particles[2].SetActive(true);
         simp.setMovementSpeed(0f);
+        GetComponent<LanSkillAnimation>().SpawnEffect(1, true);
 
         StartCoroutine(skillTime(3f, gameObject, 1, 0));
-        StartCoroutine(disableParticle(2, 1f, skillFX));
     }
 
     [Command]
     public void CmdEffectParticle(int pos)
     {
-        skillFX.particles[pos].SetActive(true);
+        
     }
 
-    [ClientRpc]
+    [TargetRpc]
     public void RpcEffectParticle(int pos)
     {
-        
+        skillFX.particles[pos].SetActive(true);
     }
 
     [Command]

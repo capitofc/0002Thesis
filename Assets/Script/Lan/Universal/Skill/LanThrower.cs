@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System;
 
 public class LanThrower : NetworkBehaviour
 {
     [SerializeField] GameObject snowBall;
     [SerializeField] public GameObject player;
+
+    private void Start()
+    {
+        player = gameObject;
+    }
 
     public void Fire()
     {
@@ -15,25 +21,36 @@ public class LanThrower : NetworkBehaviour
 
     private void Update()
     {
-        if (player.GetComponent<PlayerLanExtension>().isLocalPlayer)
+        try
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (player.GetComponent<PlayerLanExtension>().isLocalPlayer)
             {
-                Fire();
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    Fire();
+                }
             }
         }
+        catch (Exception e) { }
     }
 
     [Command(requiresAuthority = false)]
     void CmdFire()
     {
-        RpcFire(player.GetComponent<NetworkIdentity>().connectionToClient);
+        GameObject snow = Instantiate(snowBall, new Vector3(player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.x, player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.y, player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.z), Quaternion.identity);
+        NetworkServer.Spawn(snow, player.GetComponent<NetworkIdentity>().connectionToClient);
+        //RpcFire(player.GetComponent<NetworkIdentity>().connectionToClient);
     }
 
     [TargetRpc]
     void RpcFire(NetworkConnection play)
     {
-        GameObject snow = Instantiate(snowBall, new Vector3(player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.x, player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.y, player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.z), Quaternion.identity);
+       // NetworkServer.Spaw
+    }
+
+    [Command(requiresAuthority = false)]
+    void CmdSpawn(GameObject snow)
+    {
         NetworkServer.Spawn(snow);
     }
 }
