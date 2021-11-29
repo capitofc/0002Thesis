@@ -9,7 +9,7 @@ public class Skills : MonoBehaviour
     public float skillDuration;
     Rigidbody rb;
     AdvancedWalkerController simp;
-    [SerializeField] GameObject[] particles;
+    [SerializeField] public GameObject[] particles;
 
 
 

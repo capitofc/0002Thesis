@@ -5,22 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Character Files/Demo Scene/Character Demo.unity
+    guid: 7d1bca068c75e0541878c71e4ff435cc
   - enabled: 1
-    path: Assets/Scene/Manager/Persistent_Scene.unity
-    guid: 5533f5de0a42a3a4aa5193b9fc8de542
+    path: Assets/Scene/Multiplayer/LAN/MasterLanLobby.unity
+    guid: 203976065d7a1d24bbdbe0ccd51ef0c3
   - enabled: 1
-    path: Assets/Scene/Manager/Opening_Game_Scene.unity
-    guid: d3f6511e882f0d343ae2942a763e8fd3
+    path: Assets/Scene/Multiplayer/LAN/Stage1LanScene.unity
+    guid: b093c6571d5a732428d48e96e713382e
   - enabled: 1
-    path: Assets/Scene/Manager/Main_Menu_Scene.unity
-    guid: aaa843a9c7b52204380a3afa7a39ee4c
+    path: Assets/Scene/Multiplayer/LAN/Stage2LanScene.unity
+    guid: 6cb8d15d85659a149bdfb63a1085c81f
   - enabled: 1
-    path: Assets/Scene/Single Player/Challenge Mode/Stage1ChallengeMode.unity
-    guid: c392fc4d7e6c0644099159619d2b1199
-  - enabled: 1
-    path: Assets/Scene/Single Player/Challenge Mode/Stage2ChallengeMode.unity
-    guid: 49946c9d887f0914ab473aafddffa5b2
-  - enabled: 1
-    path: Assets/Scene/Single Player/Challenge Mode/Stage3ChallengeMode.unity
-    guid: 258e805160bff7740ad1baa7b4a15491
+    path: Assets/Scene/Multiplayer/LAN/Stage3LanScene.unity
+    guid: 54400251457e0334babe5ae17399f10c
   m_configObjects: {}

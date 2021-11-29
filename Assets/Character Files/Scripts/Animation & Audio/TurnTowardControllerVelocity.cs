@@ -7,7 +7,6 @@ namespace CMF
     //This script turns a gameobject toward the target controller's velocity direction;
     public class TurnTowardControllerVelocity : MonoBehaviour
     {
-
         //Target controller;
         public Controller controller;
 

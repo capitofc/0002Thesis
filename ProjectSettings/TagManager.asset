@@ -16,6 +16,17 @@ TagManager:
   - CDReset
   - Tramp
   - Pipe
+  - Int
+  - Sub
+  - Mod
+  - Mul
+  - SpeedPowerUp
+  - PickUp
+  - Add
+  - Div
+  - Blackhole
+  - Platform
+  - sbTrix
   layers:
   - Default
   - TransparentFX
