@@ -1629,7 +1629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  snowBall: {fileID: 5343176982676471703, guid: 73ed75df96b672d429092e8ae91a2836, type: 3}
+  snowBall: {fileID: 5343176982676471703, guid: 37ca4231dcb5be54980826e1642a89ca, type: 3}
   player: {fileID: 3291871006535443292}
 --- !u!114 &6293187741456891081
 MonoBehaviour:

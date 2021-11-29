@@ -18,8 +18,8 @@ GameObject:
   - component: {fileID: 6670247294430359360}
   - component: {fileID: 1507025967795446992}
   m_Layer: 0
-  m_Name: Snowball
-  m_TagString: sbTrix
+  m_Name: SnowballMaze
+  m_TagString: sbMaze
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 73ed75df96b672d429092e8ae91a2836
+  m_AssetId: 37ca4231dcb5be54980826e1642a89ca
   hasSpawned: 0
 --- !u!114 &6670247294430359360
 MonoBehaviour:
