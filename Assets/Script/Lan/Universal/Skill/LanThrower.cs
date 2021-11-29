@@ -37,20 +37,8 @@ public class LanThrower : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void CmdFire()
     {
-        GameObject snow = Instantiate(snowBall, new Vector3(player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.x, player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.y, player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.z), Quaternion.identity);
+        GameObject snow = Instantiate(snowBall, new Vector3(player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.x, player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.y, player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.position.z), player.GetComponent<PlayerLanExtension>().ballSpointPoint.transform.rotation);
         NetworkServer.Spawn(snow, player.GetComponent<NetworkIdentity>().connectionToClient);
         //RpcFire(player.GetComponent<NetworkIdentity>().connectionToClient);
-    }
-
-    [TargetRpc]
-    void RpcFire(NetworkConnection play)
-    {
-       // NetworkServer.Spaw
-    }
-
-    [Command(requiresAuthority = false)]
-    void CmdSpawn(GameObject snow)
-    {
-        NetworkServer.Spawn(snow);
     }
 }

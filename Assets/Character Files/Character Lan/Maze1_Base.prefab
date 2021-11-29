@@ -980,6 +980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3291871005428696183}
+  - component: {fileID: 6754286243027317555}
   m_Layer: 0
   m_Name: snowSpawner
   m_TagString: Untagged
@@ -994,13 +995,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3291871005428696182}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.32, z: 1.06}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.2, z: 6.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3291871006826355463}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 8362318029812696381}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &6754286243027317555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291871005428696182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf3a09955a7ac340a40f794853a9d32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraRot: {fileID: 3291871005376776677}
 --- !u!1 &3291871006106834583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,6 +1171,8 @@ GameObject:
   - component: {fileID: -2783309368976739475}
   - component: {fileID: 5305318959338900911}
   - component: {fileID: 7003432234563172195}
+  - component: {fileID: 6293187741456891081}
+  - component: {fileID: 5111423338404570134}
   m_Layer: 0
   m_Name: Maze1_Base
   m_TagString: Maze
@@ -1524,7 +1540,7 @@ MonoBehaviour:
   syncInterval: 0.1
   playerCam: {fileID: 3291871006106834583}
   posIndex: -1
-  ballSpointPoint: {fileID: 2667728662928912177}
+  ballSpointPoint: {fileID: 3291871005428696182}
   particles:
   - {fileID: 0}
   - {fileID: 0}
@@ -1615,6 +1631,66 @@ MonoBehaviour:
   syncInterval: 0.1
   snowBall: {fileID: 5343176982676471703, guid: 73ed75df96b672d429092e8ae91a2836, type: 3}
   player: {fileID: 3291871006535443292}
+--- !u!114 &6293187741456891081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291871006535443292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734b48bea0b204338958ee3d885e11f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  sendInterval: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 0
+  bufferTimeMultiplier: 1
+  bufferSizeLimit: 64
+  catchupThreshold: 4
+  catchupMultiplier: 0.1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  target: {fileID: 3291871006826355463}
+--- !u!114 &5111423338404570134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291871006535443292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734b48bea0b204338958ee3d885e11f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  sendInterval: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 0
+  bufferTimeMultiplier: 1
+  bufferSizeLimit: 64
+  catchupThreshold: 4
+  catchupMultiplier: 0.1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  target: {fileID: 3291871005428696183}
 --- !u!1 &3291871006826355462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,7 +1701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3291871006826355463}
   - component: {fileID: 3291871006826355461}
-  - component: {fileID: 3291871006826355460}
+  - component: {fileID: 628556553327013751}
   m_Layer: 0
   m_Name: ModelRoot
   m_TagString: Untagged
@@ -1646,7 +1722,6 @@ Transform:
   m_Children:
   - {fileID: 5754785662360940472}
   - {fileID: 3291871006328252592}
-  - {fileID: 3291871005428696183}
   m_Father: {fileID: 3291871006535443283}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1668,7 +1743,7 @@ MonoBehaviour:
   extrapolatePosition: 0
   updateType: 1
   smoothType: 1
---- !u!114 &3291871006826355460
+--- !u!114 &628556553327013751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1677,7 +1752,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3291871006826355462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea00ad25c692c9d4881f3c19e75ca56c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c4d099349bdab24e8eabea2680f8d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2067603378653130085}
@@ -2240,6 +2315,7 @@ Transform:
   - {fileID: 3926116966424549798}
   - {fileID: 7931665119793860837}
   - {fileID: 79377245494036047}
+  - {fileID: 3291871005428696183}
   m_Father: {fileID: 5754785662360940472}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

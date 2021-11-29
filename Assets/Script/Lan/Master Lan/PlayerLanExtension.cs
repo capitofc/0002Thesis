@@ -50,6 +50,7 @@ public class PlayerLanExtension : NetworkBehaviour
         }
     }
 
+
     private void Update()
     {
         if(isLocalPlayer && Input.GetKeyDown(KeyCode.Alpha0))
@@ -78,6 +79,7 @@ public class PlayerLanExtension : NetworkBehaviour
             CmdAddPositionPos();
         }
     }
+
 
     [Command]
     void CmdAddPositionPos()
