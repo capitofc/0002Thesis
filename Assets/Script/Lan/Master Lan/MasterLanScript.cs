@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using Mirror.Discovery;
+using UnityEngine.SceneManagement;
 
 public class MasterLanScript : NetworkManager
 {
@@ -18,6 +19,8 @@ public class MasterLanScript : NetworkManager
     [SerializeField] GameObject UniversalUI;
 
     [Header("Scene List")]
+    [Scene]
+    public string MainMenu;
     [Scene]
     public string lobbyLan;
     [Scene]
@@ -68,6 +71,7 @@ public class MasterLanScript : NetworkManager
     {
         base.OnClientDisconnect(conn);
         //UI ABOUT DISCONNECTION
+        SceneManager.LoadScene(MainMenu);
     }
 
     public override void OnClientChangeScene(string newSceneName, SceneOperation sceneOperation, bool customHandling)

@@ -14849,8 +14849,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  playerCam: {fileID: 2320587722487515783}
-  posIndex: -1
+  playerRootCam: {fileID: 2320587722487515783}
+  cam: {fileID: 6842245986101468850}
+  players: []
+  isAlive: 1
   ballSpointPoint: {fileID: 0}
   particles:
   - {fileID: 0}

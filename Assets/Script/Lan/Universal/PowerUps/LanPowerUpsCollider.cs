@@ -16,14 +16,14 @@ public class LanPowerUpsCollider : NetworkBehaviour
             }
             else if (gameObject.tag.Equals("CDReset"))
             {
-                other.gameObject.GetComponent<PlayerLanExtension>().CmdResetCdSkill();
+                other.gameObject.GetComponent<PlayerLanExtension>().CmdSpeedUp();
             }
             else if (gameObject.tag.Equals("UltiPoint"))
             {
-                other.gameObject.GetComponent<PlayerLanExtension>().CmdUltiPoint();
+                other.gameObject.GetComponent<PlayerLanExtension>().CmdSpeedUp();
             }
         }
+        GameObject.Find("Stage1Handler").GetComponent<LanStage1Handler>().CmdSetSpawnedBool(false);
         NetworkServer.Destroy(gameObject);
     }
-
 }

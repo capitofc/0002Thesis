@@ -19744,7 +19744,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 
+  m_AssetId: 49874919585a2dd409b997042364986f
   hasSpawned: 0
 --- !u!114 &7039839559103356707
 MonoBehaviour:
@@ -19789,8 +19789,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  playerCam: {fileID: 932424888120744114}
-  posIndex: -1
+  playerRootCam: {fileID: 932424888120744114}
+  cam: {fileID: 3257984874839833332}
+  players: []
+  isAlive: 1
   ballSpointPoint: {fileID: 0}
   particles:
   - {fileID: 0}

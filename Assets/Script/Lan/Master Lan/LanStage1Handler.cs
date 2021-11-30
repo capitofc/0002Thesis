@@ -48,6 +48,9 @@ public class LanStage1Handler : NetworkBehaviour
     [SyncVar]
     public bool SpawnedPowerUpBool = false;
 
+    [SyncVar]
+    public bool IsGameStarting = false;
+
     private void Start()
     {
         DontDestroyOnLoad(this);
@@ -59,6 +62,8 @@ public class LanStage1Handler : NetworkBehaviour
         {
             GamePreLoad();
             StartGame();
+            CmdIsGameRunning(true);
+            
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
@@ -246,6 +251,18 @@ public class LanStage1Handler : NetworkBehaviour
 
 
     #region CMD Functions
+    [Command(requiresAuthority = false)]
+    public void CmdIsGameRunning(bool status)
+    {
+        IsGameStarting = status;
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdDecAlivePlayer()
+    {
+        AlivePlayer--;
+    }
+
     [Command(requiresAuthority = false)]
     public void CmdSetSpawnedBool(bool status)
     {

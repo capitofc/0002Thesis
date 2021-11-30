@@ -65,6 +65,7 @@ public class NetworkStorage : NetworkBehaviour
         MapNameTxt.GetComponent<TextMeshProUGUI>().text = newValue;
     }
 
+
     private void Start()
     {
         playerLan = new SyncList<GameObject>();

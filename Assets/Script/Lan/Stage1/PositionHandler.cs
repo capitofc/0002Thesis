@@ -29,22 +29,42 @@ public class PositionHandler : NetworkBehaviour
 
     void Execute()
     {
-        if (myPlayer.GetComponent<PlayerLanExtension>().isServer)
-        {
-            CmdResetAllPlayersSpawn();
-        }
+        CmdResetAllPlayersSpawn();
     }
 
     [Command(requiresAuthority = false)]
     public void CmdResetAllPlayersSpawn()
     {
         RpcResetAllPlayersSpawn();
+        //RpcResetAllPlayersSpawn();
     }
 
     [ClientRpc]
     public void RpcResetAllPlayersSpawn()
     {
-        myPlayer.transform.position = spawnPoint[myPlayer.GetComponent<PlayerLanExtension>().posIndex].transform.position;
+        //myPlayer.transform.position = spawnPoint[myPlayer.GetComponent<PlayerLanExtension>().posIndex].transform.position;
+        for (int i = 0; i < myPlayer.GetComponent<PlayerLanExtension>().players.Count; i++)
+        {
+            if (myPlayer.GetComponent<PlayerLanExtension>().players[i].GetComponent<PlayerLanExtension>().isLocalPlayer)
+            {
+                myPlayer.transform.position = spawnPoint[i].transform.position;
+            }
+        }
+    }
+
+    [Command(requiresAuthority = false)]
+    void CmdRequestPos(GameObject go, int pos)
+    {
+        RpcRequestPost(go, pos);
+    }
+
+    [ClientRpc]
+    void RpcRequestPost(GameObject go, int pos)
+    {
+        if (go.GetComponent<PlayerLanExtension>().isLocalPlayer)
+        {
+            myPlayer.transform.position = spawnPoint[pos].transform.position;
+        }
     }
 
 
