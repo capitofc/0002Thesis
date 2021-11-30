@@ -71,7 +71,7 @@ public class PlayerLanExtension : NetworkBehaviour
         GameObject.Find("NetworkStorage").GetComponent<LanThrower>().player = gameObject;
     }
 
-    void StageLocalPlayerReference()
+    void StageLocalPlayerReference() // SEE WHICH STAGES ARE LOADED
     {
         if (GameObject.Find("PlayerPositionHandler"))
         {
@@ -81,7 +81,13 @@ public class PlayerLanExtension : NetworkBehaviour
             GameObject.Find("Stage1Handler").GetComponent<LanStage1Handler>().GetAllPlatforms();
             GameObject.Find("Stage1Handler").GetComponent<LanStage1Handler>().CmdToAddAlivePlayer();
             GameObject.Find("Stage1Handler").GetComponent<LanStage1Handler>().GetAllPowerUps();
-            CmdAddPositionPos();
+        }
+        else if (GameObject.Find("PlayerPositionHandler2"))
+        {
+            GameObject.Find("PlayerPositionHandler2").GetComponent<PositionHandler>().myPlayer = gameObject;
+            GameObject.Find("Stage2Handler").GetComponent<LanStage2Handler>().Player = gameObject;
+            GameObject.Find("Stage2Handler").GetComponent<LanStage2Handler>().GetAllUiGo();
+            GameObject.Find("Stage2Handler").GetComponent<LanStage2Handler>().GetAllArithmeticSpawn();
         }
     }
 
@@ -109,17 +115,6 @@ public class PlayerLanExtension : NetworkBehaviour
 
     #endregion
 
-    [Command]
-    void CmdAddPositionPos()
-    {
-        RpcAddPositionPos();
-    }
-
-    [ClientRpc]
-    void RpcAddPositionPos()
-    {
-        GameObject.Find("NetworkStorage").GetComponent<NetworkStorage>().PositionPos++;
-    }
 
     [Command]
     void CmdAddPlayerTotal()

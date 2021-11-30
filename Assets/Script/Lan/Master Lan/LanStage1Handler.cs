@@ -15,7 +15,7 @@ public class LanStage1Handler : NetworkBehaviour
     [SerializeField] GameObject NetworkStorage;
     [SerializeField] public GameObject Player;
 
-    [Header("Stage 1 UI")]
+    [Header("Stage 2 UI")]
     [SerializeField] GameObject ReadyTimerText;
     [SerializeField] GameObject ToAnswerTimerText;
     [SerializeField] List<GameObject> GivenText;
