@@ -388,7 +388,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &272402393
 GameObject:
@@ -1351,7 +1351,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &654023571
 MonoBehaviour:
@@ -1376,7 +1376,7 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 1580176527342035189, guid: 27160067e29ed6e45bd7e7aad332e4e4, type: 3}
+  playerPrefab: {fileID: 0}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
@@ -1384,8 +1384,6 @@ MonoBehaviour:
   - {fileID: 5573243717039911652, guid: 11914d60b433284419965e2fe977db0f, type: 3}
   - {fileID: 4070035701062619204, guid: b951a8d79bb931a478f9f085d6269455, type: 3}
   - {fileID: 5343176982676471703, guid: 73ed75df96b672d429092e8ae91a2836, type: 3}
-  - {fileID: 5343176982676471703, guid: 37ca4231dcb5be54980826e1642a89ca, type: 3}
-  - {fileID: 5343176982676471703, guid: c8fea3a24fbdf984eb52c2c51f5a8cc9, type: 3}
   SelectedPlayer: {fileID: 3291871006535443292, guid: 6370e9594e76d38458da7cd25a0fd015, type: 3}
   NetworkStorage: {fileID: 344167545}
   PlayerHostGo: {fileID: 33477343}
@@ -2368,7 +2366,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &969679282
 GameObject:
