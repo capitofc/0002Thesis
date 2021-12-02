@@ -10,7 +10,7 @@ public class LanArithOperation : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag.Equals("Maze") || other.tag.Equals("Raze") || other.tag.Equals("Zilch"))
+        if ((other.tag.Equals("Maze") || other.tag.Equals("Raze") || other.tag.Equals("Zilch")) && GameObject.Find("Stage2Handler").GetComponent<LanStage2Handler>().playerCorrectAnswer < 3)
         {
             GameObject.Find("Stage2Handler").GetComponent<LanStage2Handler>().PickUpButton.SetActive(true);
             if (GameObject.Find("Stage2Handler").GetComponent<LanStage2Handler>().canPick)
@@ -33,8 +33,9 @@ public class LanArithOperation : MonoBehaviour
                         GameObject.Find("Stage2Handler").GetComponent<LanStage2Handler>().playerCurrentAnswer += "-";
                         break;
                 }
-                parent.GetComponent<LanArithmetic>().CmdDestroy();
+                GameObject.Find("Stage2Handler").GetComponent<LanStage2Handler>().CheckMyAnswer();
                 GameObject.Find("Stage2Handler").GetComponent<LanStage2Handler>().canPick = false;
+                parent.GetComponent<LanArithmetic>().CmdDestroy();
             }
             //parent.GetComponent<LanArithmetic>().CmdDestroy();
         }

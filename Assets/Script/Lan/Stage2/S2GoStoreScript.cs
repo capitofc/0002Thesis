@@ -13,6 +13,11 @@ public class S2GoStoreScript : MonoBehaviour
     [SerializeField] public GameObject[] PickupPointsGo;
     [SerializeField] public GameObject PickUpButton;
 
+    //Parent
+    [SerializeField] public GameObject GivenPanelParent;
+    [SerializeField] public GameObject TimerPanelParent;
+    [SerializeField] public GameObject CorrectAnswerPanelParent;
+ 
     public void PickUpTrigger()
     {
         GameObject.Find("Stage2Handler").GetComponent<LanStage2Handler>().canPick = true;

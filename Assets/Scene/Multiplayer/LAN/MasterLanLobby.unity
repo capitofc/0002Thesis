@@ -808,8 +808,12 @@ MonoBehaviour:
   PickupPointsGo: []
   PowerUpsGo: []
   PickUpButton: {fileID: 0}
+  GivenPanelParent: {fileID: 0}
+  TimerPanelParent: {fileID: 0}
+  CorrectAnswerPanelParent: {fileID: 0}
   arithPrefab: {fileID: 803840243764670101, guid: 88ff78ea0cae2834891d41470d6de6ce, type: 3}
   playerCurrentAnswer: 
+  playerCorrectAnswer: 0
   canPick: 0
   s2ReadyTimerInt: 4
   s2GivenTextStr: 
@@ -2510,7 +2514,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96

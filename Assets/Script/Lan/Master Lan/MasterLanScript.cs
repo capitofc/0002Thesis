@@ -110,4 +110,10 @@ public class MasterLanScript : NetworkManager
         RunDefaultUi();
         ServerChangeScene(sceneName);
     }
+
+    public void ChangeServerScene(string name)
+    {
+        RunDefaultUi();
+        ServerChangeScene(name);
+    }
 }
